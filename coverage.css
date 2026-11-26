@@ -38,7 +38,7 @@
 .coverage-city-list button[aria-pressed="true"] .coverage-city-indicator { border-color: currentColor; }
 .coverage-city-list button[aria-pressed="true"] .coverage-city-indicator .icon { visibility: visible; }
 .coverage-picker-actions { display: flex; flex-wrap: wrap; gap: 3px 18px; }
-.coverage-picker-actions button { min-height: 36px; padding: 0; border: 0; background: none; }
+.coverage-picker-actions button { min-height: 44px; padding: 0; border: 0; background: none; }
 .coverage-picker-actions button:disabled { color: var(--muted); text-decoration: none; }
 .coverage-figure {
   grid-area: map;
@@ -46,7 +46,8 @@
   min-width: 0;
   margin: 0;
   background-color: var(--blue-soft);
-  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  --map-grid: color-mix(in srgb, var(--control-line) 18%, transparent);
+  background-image: linear-gradient(var(--map-grid) 1px, transparent 1px), linear-gradient(90deg, var(--map-grid) 1px, transparent 1px);
   background-size: 34px 34px;
 }
 .coverage-map { position: relative; aspect-ratio: 800 / 504; }
@@ -111,9 +112,12 @@
   .coverage-city-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 530px) {
-  .coverage-marker { width: 31px; height: 31px; }
   .coverage-marker-dot { width: 14px; height: 14px; }
   .coverage-marker-name { left: calc(50% + 9px); font-size: .64rem; }
   .coverage-marker[data-coverage-city="bukhara"] .coverage-marker-name { right: calc(50% + 9px); left: auto; }
   .coverage-networks { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 380px) {
+  .coverage-city-list button { gap: 6px; padding-inline: 8px; }
+  .coverage-city-list button > .icon { display: none; }
 }

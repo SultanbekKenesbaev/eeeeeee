@@ -71,6 +71,14 @@ const TourSIMPlanner = (() => {
     incomplete: ['Check the trip length and budget.', 'Проверьте срок поездки и бюджет.', 'Safar muddati va byudjetni tekshiring.']
   };
   const levels = ['none', 'light', 'moderate', 'heavy'];
+  const scenarios = [
+    { label: ['Maps and messages', 'Карты и сообщения', 'Xarita va xabarlar'], levels: [0, 0, 1, 2] },
+    { label: ['Social and photos', 'Соцсети и фото', 'Ijtimoiy tarmoq va suratlar'], levels: [2, 0, 2, 2] },
+    { label: ['Video and social', 'Видео и соцсети', 'Video va ijtimoiy tarmoq'], levels: [2, 2, 2, 2] }
+  ];
+  const scenarioLabels = ['Typical use', 'Сценарий использования', 'Foydalanish stsenariysi'];
+  const advancedLabels = ['Adjust individual apps', 'Настроить приложения', 'Ilovalarni alohida sozlash'];
+  const recommendationCopy = ['Covers {days} and the estimated {data} within your budget.', 'Покрывает {days} и расчётные {data} в пределах бюджета.', '{days} va taxminiy {data} uchun byudjetga mos.'];
   const localeIndex = { en: 0, ru: 1, uz: 2 };
   const russianDays = { one: 'день', few: 'дня', many: 'дней', other: 'дня' };
 
@@ -127,11 +135,12 @@ const TourSIMPlanner = (() => {
     </div>`).join('');
   }
 
-  function matchCard(plan, context) {
+  function matchCard(plan, context, data) {
     const { language, providers, icon, planHref } = context;
     const t = key => text(language, key);
     const provider = providers[plan.provider];
     const href = planHref ? planHref(plan) : `#plan/${encodeURIComponent(plan.id)}`;
+    const reason = recommendationCopy[localeIndex[language] ?? 0].replace('{days}', validityLabel(language, preferences.days)).replace('{data}', dataLabel(language, data));
     return `<h3>${t('match')}</h3>
       <p class="carrier"><span class="provider-mark provider-${plan.provider}" aria-hidden="true">${provider.initial}</span>${provider.name}</p>
       <dl class="planner-plan">
@@ -139,6 +148,7 @@ const TourSIMPlanner = (() => {
         <div><dt>${t('validity')}</dt><dd>${validityLabel(language, plan.days)}</dd></div>
         <div><dt>${t('price')}</dt><dd>${priceLabel(language, plan.price)}</dd></div>
       </dl>
+      <p class="note planner-reason">${icon('circle-check')}${reason}</p>
       <a class="button button-primary" href="${href}">${t('details')}${icon('arrow-right')}</a>`;
   }
 
@@ -156,7 +166,7 @@ const TourSIMPlanner = (() => {
       <span class="icon-tile">${icon('wifi')}</span>
       <div><h2>${t('estimate')}</h2><p>${dataLabel(language, data)}</p></div>
     </div>
-    <div class="planner-match">${result.plan ? matchCard(result.plan, context) :
+    <div class="planner-match">${result.plan ? matchCard(result.plan, context, data) :
       `<h3>${t('noMatch')}</h3><p class="note">${reason}</p>`}</div>`;
   }
 
@@ -164,6 +174,7 @@ const TourSIMPlanner = (() => {
     const { language, icon } = context;
     const t = key => text(language, key);
     const assumptions = t('assumptions').replace('{base}', backgroundMb).replace('{reserve}', reservePercent);
+    const locale = localeIndex[language] ?? 0;
     return `<section class="container page planner-page" aria-labelledby="planner-title">
       <div class="planner-heading">
         <h1 class="page-title" id="planner-title" tabindex="-1">${t('title')}</h1>
@@ -184,11 +195,16 @@ const TourSIMPlanner = (() => {
               <p class="note planner-field-error" id="planner-budget-error" hidden>${t('invalidBudget')}</p>
             </div>
           </div>
+          <fieldset class="planner-usage planner-scenarios">
+            <legend>${scenarioLabels[locale]}</legend>
+            <div class="planner-scenario-list">${scenarios.map((scenario, index) => `<button type="button" class="button button-secondary" data-planner-scenario="${index}" aria-pressed="${scenario.levels.every((level, field) => preferences.usage[activity[field].key] === level)}">${scenario.label[locale]}</button>`).join('')}</div>
+          </fieldset>
+          <details class="planner-method planner-advanced"><summary>${advancedLabels[locale]}${icon('chevron-down')}</summary>
           <fieldset class="planner-usage" aria-describedby="planner-usage-hint">
             <legend>${t('usage')}</legend>
             <p class="note" id="planner-usage-hint">${t('usageHint')}</p>
             <div class="planner-field-grid">${appFields(language)}</div>
-          </fieldset>
+          </fieldset></details>
           <details class="planner-method">
             <summary>${t('method')}${icon('chevron-down')}</summary>
             <p class="note">${assumptions}</p>
@@ -222,10 +238,24 @@ const TourSIMPlanner = (() => {
       }
       preferences.usage = Object.fromEntries(activity.map(({ key }) => [key, Number(values.get(key))]));
       try { sessionStorage.setItem(storageKey, JSON.stringify(preferences)); } catch {}
+      const previous = result.querySelector('.planner-estimate p')?.textContent;
       result.innerHTML = resultMarkup(context, !valid);
+      const current = result.querySelector('.planner-estimate p');
+      if (current && previous && current.textContent !== previous) current.classList.add('estimate-changed');
+      for (const button of form.querySelectorAll('[data-planner-scenario]')) {
+        const scenario = scenarios[button.dataset.plannerScenario];
+        button.setAttribute('aria-pressed', scenario.levels.every((level, field) => preferences.usage[activity[field].key] === level));
+      }
     };
 
     form.addEventListener('submit', event => event.preventDefault());
+    form.addEventListener('click', event => {
+      const button = event.target.closest('[data-planner-scenario]');
+      if (!button) return;
+      const scenario = scenarios[button.dataset.plannerScenario];
+      activity.forEach(({ key }, index) => { form.elements.namedItem(key).value = scenario.levels[index]; });
+      update();
+    });
     form.addEventListener('input', event => {
       if (event.target instanceof HTMLInputElement) update();
     });

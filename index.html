@@ -7,18 +7,19 @@
   <meta name="description" content="Find and compare travel eSIM plans for Uzbekistan by data allowance, trip length and price.">
   <title>TourSIM — Travel eSIM for Uzbekistan</title>
   <link rel="icon" href="assets/toursim-mark.svg" type="image/svg+xml">
-  <script src="theme.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="planner.css">
-  <link rel="stylesheet" href="coverage.css">
-  <link rel="stylesheet" href="purchase.css">
+  <script src="theme.js?v=20261126-3"></script>
+  <link rel="stylesheet" href="styles.css?v=20261126-3">
+  <link rel="stylesheet" href="planner.css?v=20261126-2">
+  <link rel="stylesheet" href="coverage.css?v=20261126-2">
+  <link rel="stylesheet" href="purchase.css?v=20261126-2">
+  <link rel="stylesheet" href="journey.css?v=20261126-5">
   <script src="catalog.js" defer></script>
-  <script src="icons.js" defer></script>
-  <script src="planner.js" defer></script>
+  <script src="icons.js?v=20261126-5" defer></script>
+  <script src="planner.js?v=20261126-2" defer></script>
   <script src="assets/uzbekistan-outline.js" defer></script>
-  <script src="coverage.js" defer></script>
-  <script src="purchase.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="coverage.js?v=20261126-2" defer></script>
+  <script src="purchase.js?v=20261126-2" defer></script>
+  <script src="app.js?v=20261126-5" defer></script>
 </head>
 <body>
   <a class="skip-link" id="skip-link" href="#app">Skip to content</a>
@@ -27,7 +28,7 @@
       <a class="wordmark" href="#home" aria-label="TourSIM"><img class="brand-icon" src="assets/toursim-mark.svg" alt="" width="36" height="36">Tour<span>SIM</span></a>
       <nav class="header-nav" data-navigation aria-label="Main navigation"></nav>
       <div class="header-actions">
-        <button class="theme-toggle" id="theme-toggle" type="button"></button>
+        <button class="theme-toggle" id="theme-toggle" type="button" data-theme-toggle></button>
         <label class="language">
           <span class="language-icon" data-icon="globe"></span>
           <span class="sr-only" id="language-label">Language</span>
@@ -37,13 +38,20 @@
             <option value="uz" lang="uz">UZ</option>
           </select>
         </label>
-        <details class="mobile-nav" id="mobile-navigation">
-          <summary><span data-icon="menu"></span><span class="sr-only" id="menu-label">Menu</span></summary>
-          <nav data-navigation aria-label="Main navigation"></nav>
-        </details>
+        <a class="header-account" href="#account"><span data-icon="user-round"></span><span id="header-account-label">Account</span></a>
+        <button class="menu-toggle" id="open-mobile-menu" type="button" aria-haspopup="dialog" aria-controls="mobile-navigation" aria-expanded="false"><span data-icon="menu"></span><span class="sr-only" id="menu-label">Menu</span></button>
       </div>
     </div>
   </header>
+  <dialog class="mobile-drawer" id="mobile-navigation" aria-labelledby="drawer-title">
+    <h2 class="sr-only" id="drawer-title">Menu</h2>
+    <div class="drawer-top">
+      <a class="wordmark" href="#home" aria-label="TourSIM"><img class="brand-icon" src="assets/toursim-mark.svg" alt="" width="36" height="36">Tour<span>SIM</span></a>
+      <form method="dialog"><button class="drawer-close" type="submit" autofocus><span data-icon="x"></span><span class="sr-only" id="menu-close-label">Close</span></button></form>
+    </div>
+    <nav data-navigation aria-label="Main navigation"></nav>
+    <button class="theme-toggle drawer-theme-toggle" id="drawer-theme-toggle" type="button" data-theme-toggle data-theme-label></button>
+  </dialog>
   <main id="app" tabindex="-1">
     <div class="container loading" role="status"><span></span>Loading TourSIM…</div>
   </main>

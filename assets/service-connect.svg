@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220">
+  <defs>
+    <linearGradient id="rim" x2="1" y2="1"><stop stop-color="#6483FF"/><stop offset=".6" stop-color="#2845C8"/><stop offset="1" stop-color="#10265E"/></linearGradient>
+    <linearGradient id="screen" x2=".8" y2="1"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#C8D9F4"/></linearGradient>
+    <linearGradient id="wave" x2="1" y2="1"><stop stop-color="#65F3D9"/><stop offset="1" stop-color="#099CA7"/></linearGradient>
+    <filter id="shadow"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+  <ellipse cx="165" cy="184" rx="94" ry="14" fill="#264A96" opacity=".24" filter="url(#shadow)"/>
+  <g transform="translate(110 76) rotate(-34 50 59) skewX(5)">
+    <rect x="0" y="5" width="91" height="133" rx="20" fill="#152765"/>
+    <rect width="91" height="132" rx="20" fill="url(#rim)" stroke="#6484EF" stroke-width="2"/>
+    <rect x="6" y="6" width="79" height="120" rx="15" fill="url(#screen)" stroke="#22378C" stroke-width="2"/>
+    <rect x="33" y="10" width="23" height="6" rx="3" fill="#1B2F73"/>
+  </g>
+  <g transform="translate(5 3)" fill="none" stroke="#08768E" stroke-width="11" stroke-linecap="round">
+    <path d="M189 43c45 2 76 31 84 69M190 66c29 2 50 20 56 45M192 89c16 2 27 12 31 24"/>
+  </g>
+  <g fill="none" stroke="url(#wave)" stroke-width="11" stroke-linecap="round">
+    <path d="M189 43c45 2 76 31 84 69M190 66c29 2 50 20 56 45M192 89c16 2 27 12 31 24"/>
+  </g>
+</svg>

@@ -98,10 +98,11 @@ const recordIdPattern = /^[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}$/;
 
 const publicFiles = new Set([
   'index.html', 'app.js', 'catalog.js', 'icons.js', 'planner.js', 'coverage.js', 'purchase.js', 'theme.js',
-  'styles.css', 'planner.css', 'coverage.css', 'purchase.css',
+  'styles.css', 'planner.css', 'coverage.css', 'purchase.css', 'journey.css',
   'assets/favicon.svg', 'assets/toursim-mark.svg', 'assets/samarkand-hero.webp', 'assets/uzbekistan-outline.js',
   'assets/manrope-latin.woff2', 'assets/manrope-cyrillic.woff2', 'assets/manrope-OFL.txt',
-  'assets/feather-license.txt', 'assets/lucide-license.txt'
+  'assets/feather-license.txt', 'assets/lucide-license.txt',
+  'assets/service-choose.svg', 'assets/service-install.svg', 'assets/service-connect.svg', 'assets/service-map.svg'
 ]);
 const contentTypes = {
   html: 'text/html; charset=utf-8', js: 'text/javascript; charset=utf-8', css: 'text/css; charset=utf-8',

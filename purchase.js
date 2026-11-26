@@ -193,7 +193,7 @@ const TourSIMPurchase = (() => {
           </div><p class="note">${t.priceNote}</p>
           <p class="note${plan.checkAvailability ? ' plan-availability' : ''}">${context.purchaseHint(plan)}</p>` : ''}
           <p class="note">${context.phoneCheck}</p>
-          ${plan ? `<div class="actions">${internal(context, '#purchase', t.changePlan)}</div>` : ''}
+          <div class="actions">${internal(context, context.phoneHref, context.phoneLabel)}${plan ? internal(context, '#purchase', t.changePlan) : ''}</div>
         </div>
         <ol class="panel esim-flow-panel esim-purchase-steps">
           <li><span class="icon-tile" aria-hidden="true">${icon(plan ? 'check' : 'sliders-horizontal')}</span><div><h2>${plan ? t.chosen : t.select}</h2>${plan ? '' : `<p>${t.selectHint}</p>`}</div></li>
@@ -296,19 +296,19 @@ const TourSIMPurchase = (() => {
 
   function renderAuth(t, plan, action) {
     const registering = action === 'register';
-    return `<section class="panel esim-flow-panel esim-auth" aria-label="${t[action]}">
+    return `<div class="esim-auth-layout"><section class="panel esim-flow-panel esim-auth" aria-label="${t[action]}">
       <p class="esim-flow-lede">${plan ? t.authPlanIntro : t.authIntro}</p>
       <div class="esim-auth-switch">
         ${['login', 'register'].map(mode => `<button type="button" data-esim-auth="${mode}" aria-pressed="${mode === action}">${t[mode]}</button>`).join('')}
       </div>
       <form class="esim-flow-form" method="post" action="/api/${action}" data-esim-action="${action}">
         <label class="esim-field"><span>${t.email}</span><input class="input" type="email" name="email" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="254" required></label>
-        <label class="esim-field"><span>${t.password}</span><input class="input" type="password" name="password" autocomplete="${registering ? 'new-password' : 'current-password'}" maxlength="256"${registering ? ' aria-describedby="esim-password-hint"' : ''} required></label>
+        <label class="esim-field"><span>${t.password}</span><input class="input" type="password" name="password" autocomplete="${registering ? 'new-password' : 'current-password'}" maxlength="256"${registering ? ' minlength="15" aria-describedby="esim-password-hint"' : ''} required></label>
         ${registering ? `<p class="note" id="esim-password-hint">${t.passwordHint}</p>` : ''}
         <button class="button button-primary" type="submit">${t[action]}</button>
         <p data-esim-feedback class="esim-feedback" role="status"></p>
       </form>
-    </section>`;
+    </section><div class="account-visual" aria-hidden="true"><img src="assets/service-choose.svg" width="360" height="220" alt="" loading="lazy"></div></div>`;
   }
 
   function renderDashboard(context, records) {
@@ -362,6 +362,8 @@ const TourSIMPurchase = (() => {
     const purchaseAttempts = new Map();
     let selectedPlan = context.plan;
     let profileLoad = 0;
+    let draft = context.authDraft;
+    context.authDraft = null;
 
     function setFeedback(message, error = false) {
       const feedback = root.querySelector('[data-esim-feedback]');
@@ -372,7 +374,16 @@ const TourSIMPurchase = (() => {
 
     function showProfile({ user, records }) {
       profile.innerHTML = user ? renderDashboard(context, records) : renderAuth(t, selectedPlan, authAction);
-      if (!user) return;
+      if (!user) {
+        if (draft) {
+          const form = profile.querySelector('form');
+          form.elements.email.value = draft.email;
+          form.elements.password.value = draft.password;
+          draft = null;
+        }
+        return;
+      }
+      draft = null;
       profile.querySelector('[data-esim-email]').textContent = user.email;
       profile.querySelector('[data-esim-legacy]').hidden = readLegacyRecords().length === 0;
       if (selectedPlan) profile.querySelector('#esim-account-plan').value = selectedPlan.id;
@@ -402,6 +413,7 @@ const TourSIMPurchase = (() => {
     function submit(button, operation) {
       if (pendingWrite) return;
       button.disabled = true;
+      button.setAttribute('aria-busy', 'true');
       setFeedback('');
       pendingWrite = operation().catch(error => {
         if (!root.isConnected) return;
@@ -414,12 +426,22 @@ const TourSIMPurchase = (() => {
           showProfile({ user: null });
         }
         setFeedback(Object.hasOwn(t, error.code) ? t[error.code] : t.unavailable, true);
+        const field = { invalid_email: 'email', email_taken: 'email', invalid_password: 'password', invalid_credentials: 'password' }[error.code];
+        if (field) {
+          const input = root.querySelector(`.esim-auth input[name="${field}"]`);
+          input?.setAttribute('aria-invalid', 'true');
+          input?.focus();
+        }
       }).finally(() => {
         button.disabled = false;
+        button.removeAttribute('aria-busy');
         pendingWrite = undefined;
       });
     }
 
+    root.addEventListener('input', event => {
+      if (event.target.matches('.esim-auth input')) event.target.removeAttribute('aria-invalid');
+    });
     root.addEventListener('submit', event => {
       const form = event.target;
       const action = form.dataset.esimAction;

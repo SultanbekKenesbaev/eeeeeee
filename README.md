@@ -27,3 +27,9 @@ For public hosting, run the Node server behind an HTTPS reverse proxy and set `P
 ## Design assets
 
 The TourSIM mark and Samarkand artwork are in `assets/`. Manrope and the selected Lucide icons are bundled locally. Their license notices are included in the same folder.
+
+The four `assets/service-*.svg` illustrations are vector artwork for the home and account pages. `journey.css` defines the shared visual and motion tokens, including reduced-motion behavior.
+
+## Browser regression check
+
+With Playwright and its Chromium browser available, run `node tests/journey.mjs`. The check starts a loopback server with a temporary SQLite database and exercises filtering, comparison, compatibility and account flows. Set `TOURSIM_PLAYWRIGHT` or `TOURSIM_CHROMIUM` to use an existing installation, or `TOURSIM_TEST_TMPDIR` to use an existing directory for the temporary database.
