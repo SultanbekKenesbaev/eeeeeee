@@ -42,7 +42,7 @@ const strings = {
   validity: ['Validity', 'Срок действия', 'Amal qilish muddati'],
   network: ['Network in Uzbekistan', 'Сеть в Узбекистане', 'O‘zbekistondagi tarmoq'],
   beelineNetwork: ['Beeline (Unitel)', 'Beeline (Unitel)', 'Beeline (Unitel)'],
-  enjoyNetwork: ['Usually Ucell or Beeline; check the package', 'Обычно Ucell или Beeline; проверьте условия пакета', 'Odatda Ucell yoki Beeline; paket shartlarini tekshiring'],
+  enjoyNetwork: ['Usually Ucell or Beeline; check the provider', 'Обычно Ucell или Beeline; уточните у провайдера', 'Odatda Ucell yoki Beeline; provayderdan aniqlang'],
   service: ['What’s included', 'Что входит', 'Paket tarkibi'],
   dataOnly: ['Data only; no Uzbek number, calls or SMS', 'Только интернет, без местного номера, звонков и SMS', 'Faqat internet; mahalliy raqam, qo‘ng‘iroq va SMS yo‘q'],
   verification: ['Passport verification', 'Проверка паспорта', 'Pasport tekshiruvi'],
@@ -51,7 +51,7 @@ const strings = {
   firstNetwork: ['On first connection to a supported network', 'При первом подключении к поддерживаемой сети', 'Mos tarmoqqa birinchi ulanishda'],
   details: ["View plan","Смотреть пакет","Paketni ko‘rish"],
   providerTerms: ['Provider terms', 'Условия провайдера', 'Provayder shartlari'],
-  buy: ["Buy eSIM","Купить eSIM","eSIM xarid qilish"],
+  buy: ["Continue to provider","Перейти к провайдеру","Provayder saytiga o‘tish"],
   purchaseNotice: ['Pay and receive your eSIM on the provider’s site.', 'Оплата и получение eSIM у провайдера.', 'To‘lov va eSIM olish provayder saytida.'],
   tripMore: ['More offers on Trip.com', 'Другие предложения на Trip.com', 'Trip.com’dagi boshqa takliflar'],
   tripNote: ['Check prices and ID requirements on Trip.com.', 'Проверьте цену и требования к документам на Trip.com.', 'Narx va hujjat talablarini Trip.com’da tekshiring.'],
@@ -73,8 +73,8 @@ const strings = {
   navPlans: ["Plans","Пакеты","Paketlar"],
   navPlanner: ['Plan finder', 'Умный подбор', 'Paket tanlash'],
   navCoverage: ['Coverage', 'Карта покрытия', 'Qamrov xaritasi'],
-  navPurchase: ['Buy eSIM', 'Покупка eSIM', 'eSIM xaridi'],
-  navAccount: ['My eSIMs', 'Личный кабинет', 'Mening eSIMlarim'],
+  navPurchase: ['Purchase guide', 'Как купить eSIM', 'eSIM xarid qilish'],
+  navAccount: ['My eSIMs', 'Мои eSIM', 'Mening eSIMlarim'],
   how: ["How it works","Как это работает","Qanday ishlaydi"],
   compatibility: ["Compatibility","Совместимость","Moslik"],
   faq: ["FAQ","Частые вопросы","Savol-javob"],
@@ -83,7 +83,7 @@ const strings = {
   menu: ["Menu","Меню","Menyu"],
   skip: ["Skip to content","К содержимому","Asosiy mazmunga o‘tish"],
   showCatalog: ["View all matching plans","Все подходящие пакеты","Barcha mos paketlar"],
-  lowestMatch: ["Lowest price","Минимальная цена","Eng arzon paket"],
+  lowestMatch: ["Lowest verified price","Минимальная проверенная цена","Eng arzon tekshirilgan paket"],
   emptyTitle: ["No matching plans","Подходящих пакетов нет","Mos paket topilmadi"],
   chooseTitle: ["Choose a plan","Выберите пакет","Paketni tanlang"],
   chooseBody: ["Set your trip length and data needs, then compare the available packages.","Укажите срок поездки и объём интернета, затем сравните доступные пакеты.","Safar muddati va internet hajmini belgilang, so‘ng mavjud paketlarni solishtiring."],
@@ -109,11 +109,39 @@ const strings = {
   unlockedTitle: ["Check the carrier lock","Проверьте блокировку оператора","Operator blokirovkasini tekshiring"],
   supported: ["Your phone has an eSIM option","В телефоне есть пункт eSIM","Telefonda eSIM bandi bor"],
   backToPlan: ["Return to selected plan","Вернуться к пакету","Tanlangan paketga qaytish"],
-  backToPlans: ["Browse plans","К списку пакетов","Paketlar ro‘yxatiga"]
+  backToPlans: ["Browse plans","К списку пакетов","Paketlar ro‘yxatiga"],
+  hotspot: ['Hotspot', 'Раздача интернета', 'Internet ulashish'],
+  topUp: ['Top-up', 'Пополнение', 'To‘ldirish'],
+  airaloHotspot: ['Depends on your phone and network', 'Зависит от телефона и сети', 'Telefon va tarmoqqa bog‘liq'],
+  airaloTopUp: ['Check the package details', 'Уточните в условиях пакета', 'Paket shartlarini tekshiring'],
+  enjoyHotspot: ['Yes, uses package data', 'Да, из объёма пакета', 'Ha, paketdan sarflanadi'],
+  enjoyTopUp: ['Buy a new package', 'Купите новый пакет', 'Yangi paket xarid qiling'],
+  availability: ['Check availability', 'Уточните наличие', 'Mavjudligini tekshiring'],
+  sellerAvailability: ['Check whether {data} for {duration} is still available from the provider.', 'Сверьте у провайдера наличие пакета {data} на {duration}.', 'Provayderdan {duration} uchun {data} paketining mavjudligini tekshiring.'],
+  selectAtSeller: ['Choose {data} for {duration} on the provider’s site.', 'Выберите {data} на {duration} на сайте провайдера.', 'Provayder saytida {duration} uchun {data} paketini tanlang.'],
+  dataGuide: ['How much data do I need?', 'Сколько ГБ мне нужно?', 'Qancha GB kerak?'],
+  usageMaps: ['Maps and chats', 'Карты и чаты', 'Xarita va chatlar'],
+  usageSocial: ['Social media', 'Соцсети', 'Ijtimoiy tarmoqlar'],
+  usageVideo: ['Video', 'Видео', 'Video'],
+  usageEstimate: ['About {data} for {duration}', 'Около {data} на {duration}', '{duration} uchun taxminan {data}'],
+  usageNote: ['An estimate. Video quality and Wi-Fi affect data use.', 'Это ориентир. Расход зависит от качества видео и доступа к Wi‑Fi.', 'Bu taxmin. Sarf video sifati va Wi‑Fi’ga bog‘liq.'],
+  usageNeedsDuration: ['Choose a trip length to estimate data.', 'Выберите срок поездки, чтобы рассчитать объём.', 'Hisoblash uchun safar muddatini tanlang.'],
+  usageTooLarge: ['Matching packages have up to {data}.', 'Подходящие по сроку пакеты содержат до {data}.', 'Muddatga mos paketlarda {data} gacha bor.'],
+  applyEstimate: ['Apply to filters', 'Применить к фильтрам', 'Filtrlarga qo‘llash'],
+  shareCompare: ['Share comparison', 'Поделиться сравнением', 'Solishtirishni ulashish'],
+  shareUrl: ['Link', 'Ссылка', 'Havola'],
+  shareLocal: ['This address is local. A public TourSIM address is needed to share it with other devices.', 'Это локальный адрес. Чтобы открыть ссылку на другом устройстве, TourSIM нужен публичный адрес.', 'Bu mahalliy manzil. Havolani boshqa qurilmada ochish uchun TourSIM ommaviy manzilda bo‘lishi kerak.'],
+  copy: ['Copy link', 'Скопировать ссылку', 'Havolani nusxalash'],
+  copied: ['Link copied', 'Ссылка скопирована', 'Havola nusxalandi'],
+  copyManually: ['Select and copy the link.', 'Выделите и скопируйте ссылку.', 'Havolani belgilang va nusxalang.'],
+  close: ['Close', 'Закрыть', 'Yopish']
 };
 
 const dayOptions = [['any', 'anyDuration'], ['7', 'short'], ['14', 'medium'], ['30', 'long'], ['custom', 'custom']];
 const dataChoices = [0, 1, 3, 5, 10];
+const usageProfiles = { usageMaps: 100, usageSocial: 300, usageVideo: 1000 };
+const maxTripDays = 365;
+const maxDataNeeded = Math.ceil(maxTripDays * Math.max(...Object.values(usageProfiles)) / 1000);
 const sortOptions = [['price', 'sortPrice'], ['data', 'sortData']];
 const headerNavigation = [['plans', 'navPlans'], ['planner', 'navPlanner'], ['coverage', 'navCoverage'], ['phone', 'compatibility'], ['account', 'navAccount']];
 const navigation = [...headerNavigation, ['purchase', 'navPurchase'], ['how-it-works', 'how'], ['faq', 'faq']];
@@ -123,6 +151,9 @@ const app = document.querySelector('#app');
 const languageSelect = document.querySelector('#language');
 const mobileMenu = document.querySelector('#mobile-navigation');
 const getPlan = id => plans.find(plan => plan.id === id);
+const validDuration = value => dayOptions.some(([choice]) => choice === value);
+const validCustomDays = value => Number.isInteger(value) && value >= 1 && value <= maxTripDays;
+const validData = value => Number.isInteger(value) && value >= 0 && value <= maxDataNeeded;
 
 function initialLanguage() {
   let saved;
@@ -138,26 +169,27 @@ function savedTrip() {
 const saved = savedTrip();
 const state = {
   language: initialLanguage(),
-  duration: dayOptions.some(([value]) => value === saved.duration) ? saved.duration : '14',
-  customDays: Number.isInteger(saved.customDays) && saved.customDays > 0 && saved.customDays <= 365 ? saved.customDays : 14,
-  dataNeeded: dataChoices.includes(saved.dataNeeded) ? saved.dataNeeded : 0,
+  duration: validDuration(saved.duration) ? saved.duration : '14',
+  customDays: validCustomDays(saved.customDays) ? saved.customDays : 14,
+  dataNeeded: validData(saved.dataNeeded) ? saved.dataNeeded : 0,
   sort: saved.sort === 'data' ? 'data' : 'price',
   compare: new Set(Array.isArray(saved.compare) ? saved.compare.filter(getPlan).slice(0, 2) : []),
-  device: saved.device === 'android' ? 'android' : 'iphone'
+  device: saved.device === 'android' ? 'android' : 'iphone',
+  usage: Object.hasOwn(usageProfiles, saved.usage) ? saved.usage : 'usageMaps'
 };
 
 function saveTrip() {
-  const { duration, customDays, dataNeeded, sort, compare, device } = state;
-  try { sessionStorage.setItem(storageKey, JSON.stringify({ duration, customDays, dataNeeded, sort, compare: [...compare], device })); } catch {}
+  const { duration, customDays, dataNeeded, sort, compare, device, usage } = state;
+  try { sessionStorage.setItem(storageKey, JSON.stringify({ duration, customDays, dataNeeded, sort, compare: [...compare], device, usage })); } catch {}
 }
 
 const text = key => strings[key][languages.indexOf(state.language)];
 const price = plan => new Intl.NumberFormat(state.language, { maximumFractionDigits: 2 }).format(plan.price);
-function days(plan) {
-  if (state.language === 'uz') return `${plan.days} kun`;
-  if (state.language === 'en') return `${plan.days} ${plan.days === 1 ? 'day' : 'days'}`;
+function days(count) {
+  if (state.language === 'uz') return `${count} kun`;
+  if (state.language === 'en') return `${count} ${count === 1 ? 'day' : 'days'}`;
   const forms = { one: 'день', few: 'дня', many: 'дней', other: 'дня' };
-  return `${plan.days} ${forms[new Intl.PluralRules('ru').select(plan.days)]}`;
+  return `${count} ${forms[new Intl.PluralRules('ru').select(count)]}`;
 }
 const gigabytes = value => `${value} ${text('gb')}`;
 const icon = name => `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${lucide[name]}</svg>`;
@@ -166,6 +198,15 @@ const optionList = (options, selected) => options.map(([value, label]) => option
 const link = (label, route, style = 'button button-secondary', iconName) => `<a class="${style}" href="#${route}">${text(label)}${iconName ? icon(iconName) : ''}</a>`;
 const external = (label, url, style = 'text-action') => `<a class="${style}" href="${url}" target="_blank" rel="noopener noreferrer">${text(label)}${icon('arrow-up-right')}</a>`;
 const comparePath = () => `compare/${[...state.compare].join('/')}`;
+function storefront(plan) {
+  const urls = plan.purchase ?? providers[plan.provider].store;
+  return urls[state.language] ?? urls.en;
+}
+
+function purchaseHint(plan) {
+  return text(plan.checkAvailability ? 'sellerAvailability' : 'selectAtSeller')
+    .replace('{data}', gigabytes(plan.data)).replace('{duration}', days(plan.days));
+}
 const brand = () => '<a class="wordmark" href="#home" aria-label="TourSIM"><img class="brand-icon" src="assets/toursim-mark.svg" alt="" width="36" height="36">Tour<span>SIM</span></a>';
 
 function planPath(plan, from) {
@@ -178,12 +219,14 @@ function relatedPath(name, plan, from) {
 }
 
 function readRoute() {
-  const [name, id, origin, status] = location.hash.slice(1).split('/');
+  const [path, query] = location.hash.slice(1).split('?', 2);
+  const [name, id, origin, status] = path.split('/');
   const plan = getPlan(id);
   const from = plan ? planOrigins.includes(origin) ? origin : 'plans' : id === 'plans' ? 'plans' : 'home';
-  if (['plans', 'planner', 'coverage', 'account'].includes(name)) return { name };
+  if (name === 'plans') return { name, query };
+  if (['planner', 'coverage', 'account'].includes(name)) return { name };
   if (name === 'purchase') return { name, plan, from };
-  if (name === 'compare') return { name, pair: [plan, getPlan(origin)] };
+  if (name === 'compare') return { name, query, pair: [plan, getPlan(origin)] };
   if (name === 'plan' && plan) return { name, plan, from };
   if (name === 'phone') {
     const result = [id, origin, status].find(value => value === 'supported' || value === 'unsupported');
@@ -198,9 +241,63 @@ function go(route) {
   else location.hash = route;
 }
 
+function restoreSharedFilters(query) {
+  const params = new URLSearchParams(query);
+  const duration = params.get('duration');
+  const customDays = Number(params.get('days'));
+  const data = Number(params.get('data'));
+  const sort = params.get('sort');
+  if (validDuration(duration)) state.duration = duration;
+  if (validCustomDays(customDays)) state.customDays = customDays;
+  if (params.has('data') && validData(data)) state.dataNeeded = data;
+  if (sortOptions.some(([choice]) => choice === sort)) state.sort = sort;
+}
+
+function clearSharedQuery() {
+  if (!readRoute().query) return;
+  try { history.replaceState(history.state, '', location.hash.split('?', 1)[0]); } catch {}
+}
+
+function showShare() {
+  if (document.querySelector('.share-dialog')) return;
+  const params = new URLSearchParams({ duration: state.duration, data: String(state.dataNeeded), sort: state.sort });
+  if (state.duration === 'custom') params.set('days', state.customDays);
+  const url = new URL(location.href);
+  url.hash = `${comparePath()}?${params}`;
+  const local = url.protocol === 'file:' || ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname);
+  const dialog = document.createElement('dialog');
+  dialog.className = 'share-dialog panel';
+  dialog.setAttribute('aria-labelledby', 'share-title');
+  dialog.innerHTML = `<h2 id="share-title">${text('shareCompare')}</h2>
+    <label class="share-url">${text('shareUrl')}<input class="input" type="url" readonly></label>
+    ${local ? `<p class="note">${text('shareLocal')}</p>` : ''}
+    <p class="note share-feedback" role="status"></p>
+    <form class="actions share-actions" method="dialog"><button class="button button-primary" type="button" autofocus>${text('copy')}</button><button class="button button-secondary" type="submit">${text('close')}</button></form>`;
+  const input = dialog.querySelector('input');
+  const feedback = dialog.querySelector('.share-feedback');
+  input.value = url.href;
+  dialog.querySelector('button[type="button"]').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(input.value);
+      feedback.textContent = text('copied');
+    } catch {
+      input.focus();
+      input.select();
+      feedback.textContent = text('copyManually');
+    }
+  });
+  dialog.addEventListener('close', () => dialog.remove(), { once: true });
+  document.body.append(dialog);
+  dialog.showModal();
+}
+
+function tripDays() {
+  return state.duration === 'custom' ? state.customDays : Number(state.duration) || 0;
+}
+
 function availablePlans() {
-  const tripDays = state.duration === 'custom' ? state.customDays : Number(state.duration) || 0;
-  return plans.filter(plan => plan.days >= tripDays && plan.data >= state.dataNeeded)
+  const length = tripDays();
+  return plans.filter(plan => plan.days >= length && plan.data >= state.dataNeeded)
     .sort((first, second) => state.sort === 'data' ? second.data - first.data || first.price - second.price : first.price - second.price);
 }
 
@@ -215,7 +312,8 @@ function catalogStamp() {
 }
 
 function dataOptions() {
-  return dataChoices.map(value => option(value, value ? `${text('fromData')} ${gigabytes(value)}` : text('anyData'), value === state.dataNeeded)).join('');
+  const amounts = [...new Set([...dataChoices, state.dataNeeded])].sort((first, second) => first - second);
+  return amounts.map(value => option(value, value ? `${text('fromData')} ${gigabytes(value)}` : text('anyData'), value === state.dataNeeded)).join('');
 }
 
 function tripFields() {
@@ -226,7 +324,7 @@ function tripFields() {
     </div>
     <div class="trip-field custom-row" id="custom-duration"${custom ? '' : ' hidden'}>
       <label for="custom-days">${text('daysCount')}</label>
-      <input class="input" type="number" id="custom-days" name="custom-days" min="1" max="365" required value="${state.customDays}"${custom ? '' : ' disabled'}>
+      <input class="input" type="number" id="custom-days" name="custom-days" min="1" max="${maxTripDays}" required value="${state.customDays}"${custom ? '' : ' disabled'}>
     </div>
     <div class="trip-field">
       <label for="data-needed">${icon('wifi')}${text('dataAmount')}</label>
@@ -239,6 +337,46 @@ function finder() {
     ${tripFields()}
     <button class="button button-primary" type="submit">${text('showPlans')}${icon('arrow-right')}</button>
   </form>`;
+}
+
+function estimateData() {
+  return Math.ceil(tripDays() * usageProfiles[state.usage] / 1000);
+}
+
+function estimateSummary(amount) {
+  if (!amount) return text('usageNeedsDuration');
+  return text('usageEstimate').replace('{data}', gigabytes(amount)).replace('{duration}', days(tripDays()));
+}
+
+function dataGuide() {
+  const amount = estimateData();
+  return `<details class="data-guide">
+    <summary>${icon('wifi')}${text('dataGuide')}${icon('chevron-down')}</summary>
+    <div class="data-guide-body">
+      <fieldset class="device-switch usage-choices">
+        <legend class="sr-only">${text('dataGuide')}</legend>
+        ${Object.keys(usageProfiles).map(key => `<label><input type="radio" name="data-usage" value="${key}"${state.usage === key ? ' checked' : ''}><span>${text(key)}</span></label>`).join('')}
+      </fieldset>
+      <div class="data-guide-result">
+        <div role="status"><p id="data-estimate">${estimateSummary(amount)}</p><p class="note" id="data-estimate-limit" hidden></p></div>
+        <button class="button button-secondary" type="button" data-action="apply-estimate"${amount ? '' : ' disabled'}>${text('applyEstimate')}</button>
+      </div>
+      <p class="note">${text('usageNote')}</p>
+    </div>
+  </details>`;
+}
+
+function updateDataGuide(invalid = false) {
+  const estimate = app.querySelector('#data-estimate');
+  if (!estimate) return;
+  const amount = invalid ? 0 : estimateData();
+  const limit = app.querySelector('#data-estimate-limit');
+  const packages = plans.filter(plan => plan.days >= tripDays() && !plan.checkAvailability);
+  const maxAvailable = Math.max(0, ...packages.map(plan => plan.data));
+  estimate.textContent = estimateSummary(amount);
+  limit.hidden = !maxAvailable || amount <= maxAvailable;
+  limit.textContent = limit.hidden ? '' : text('usageTooLarge').replace('{data}', gigabytes(maxAvailable));
+  app.querySelector('[data-action="apply-estimate"]').disabled = !amount;
 }
 
 function sortField() {
@@ -260,8 +398,9 @@ function planList(items, compare, recommended) {
       </div>
       <div class="plan-values"><strong class="plan-data">${data}</strong><strong class="plan-price">${price(plan)} <small>USD</small></strong></div>
       <ul class="plan-meta">
-        <li>${icon('calendar-days')}<span>${days(plan)}</span></li>
+        <li>${icon('calendar-days')}<span>${days(plan.days)}</span></li>
         <li>${icon('signal')}<span>${text(provider.network)}</span></li>
+        ${plan.checkAvailability ? `<li class="plan-availability">${icon('circle-alert')}<span>${text('availability')}</span></li>` : ''}
       </ul>
       <a class="button button-secondary plan-details" href="#${planPath(plan, compare ? 'plans' : 'home')}" aria-label="${text('details')}: ${label}">${text('details')}${icon('arrow-right')}</a>
     </article>`;
@@ -280,7 +419,8 @@ function planResults(items, compare) {
     <button type="button" class="button button-secondary" data-action="reset">${text('reset')}</button>
   </div>`;
   const shown = compare ? items : items.slice(0, 3);
-  const recommended = compare ? undefined : items.reduce((lowest, plan) => plan.price < lowest.price ? plan : lowest);
+  const verified = items.filter(plan => !plan.checkAvailability);
+  const recommended = compare ? undefined : verified.reduce((lowest, plan) => lowest && lowest.price <= plan.price ? lowest : plan, null);
   return `${planList(shown, compare, recommended)}
     ${items.length > shown.length ? `<div class="show-all">${link('showCatalog', 'plans', 'button button-secondary', 'arrow-right')}</div>` : ''}`;
 }
@@ -295,7 +435,7 @@ function resultsSection(items, compare) {
       </div>
       ${sortField()}
     </div>
-    ${compare ? `<div class="panel catalog-fields">${tripFields()}</div>` : ''}
+    ${compare ? `<div class="panel catalog-fields">${tripFields()}</div>${dataGuide()}` : ''}
     <div id="catalog-results" data-compare="${compare}">${planResults(items, compare)}</div>
   </section>`;
 }
@@ -328,6 +468,7 @@ function home() {
   return `${hero()}
     <div class="container home-content">
       ${finder()}
+      ${dataGuide()}
       ${resultsSection(availablePlans(), false)}
       <section class="home-section" aria-labelledby="how-it-works">
         <h2 class="section-title" id="how-it-works" tabindex="-1">${text('how')}</h2>
@@ -381,6 +522,7 @@ function refreshPlans() {
   const numberField = app.querySelector('#custom-days');
   const count = app.querySelector('#results-count');
   const invalid = numberField.willValidate && !numberField.validity.valid;
+  updateDataGuide(invalid);
   results.hidden = invalid;
   if (invalid) {
     numberField.setAttribute('aria-invalid', 'true');
@@ -407,16 +549,27 @@ function page(title, back, content, className = '') {
 }
 
 function planMetrics(plan) {
-  return [['price', `${price(plan)} USD`], ['data', gigabytes(plan.data)], ['validity', days(plan)], ['network', text(providers[plan.provider].network)]];
+  const provider = providers[plan.provider];
+  return [
+    ['price', `${price(plan)} USD`], ['data', gigabytes(plan.data)], ['validity', days(plan.days)], ['network', text(provider.network)],
+    ...['hotspot', 'topUp'].map(key => {
+      const [label, source] = provider.conditions[key];
+      return [key, text(label), source];
+    })
+  ];
 }
 
 function commonConditions() {
   return [['service', text('dataOnly')], ['verification', text('noVerification')], ['activation', text('firstNetwork')]];
 }
 
+function metricContent(value, source) {
+  return source ? `<a class="metric-source" href="${source}" target="_blank" rel="noopener noreferrer">${value}</a>` : value;
+}
+
 function metricList(metrics) {
-  const glyphs = { validity: 'calendar-days', network: 'signal', service: 'wifi', verification: 'shield-check', activation: 'sliders-horizontal' };
-  return `<dl class="metrics">${metrics.map(([key, value]) => `<div>${icon(glyphs[key])}<dt>${text(key)}</dt><dd>${value}</dd></div>`).join('')}</dl>`;
+  const glyphs = { validity: 'calendar-days', network: 'signal', hotspot: 'wifi', topUp: 'arrow-up-right', service: 'wifi', verification: 'shield-check', activation: 'sliders-horizontal' };
+  return `<dl class="metrics">${metrics.map(([key, value, source]) => `<div>${icon(glyphs[key])}<dt>${text(key)}</dt><dd>${metricContent(value, source)}</dd></div>`).join('')}</dl>`;
 }
 
 function compare(pair) {
@@ -424,8 +577,9 @@ function compare(pair) {
   state.compare = new Set(pair.map(plan => plan.id));
   const metrics = pair.map(planMetrics);
   return page(text('comparison'), 'plans', `<div class="panel comparison-panel">
+    <div class="comparison-actions"><button class="button button-secondary share-button" type="button" data-action="share">${text('shareCompare')}</button></div>
     <table class="comparison"><thead><tr><td></td>${pair.map(plan => `<th scope="col">${providers[plan.provider].name}<br><span class="note">${gigabytes(plan.data)}</span></th>`).join('')}</tr></thead>
-    <tbody>${metrics[0].map(([key, value], index) => `<tr><th scope="row">${text(key)}</th><td>${value}</td><td>${metrics[1][index][1]}</td></tr>`).join('')}
+    <tbody>${metrics[0].map(([key, value, source], index) => `<tr><th scope="row">${text(key)}</th><td>${metricContent(value, source)}</td><td>${metricContent(...metrics[1][index].slice(1))}</td></tr>`).join('')}
     <tr><td></td>${pair.map(plan => `<td>${link('details', planPath(plan, 'compare'), 'text-action', 'arrow-right')}</td>`).join('')}</tr></tbody></table>
     <section class="shared-conditions"><h2>${text('commonConditions')}</h2>${metricList(commonConditions())}</section>
     ${catalogStamp()}</div>`, 'narrow-page');
@@ -435,24 +589,26 @@ function details(plan, from) {
   const provider = providers[plan.provider];
   const back = from === 'compare' ? state.compare.size === 2 ? comparePath() : 'plans' : from;
   const [, , ...facts] = planMetrics(plan);
-  const checkout = relatedPath('purchase', plan, from);
+  const checkout = storefront(plan);
   return page(`${provider.name} <span class="title-divider">·</span> ${gigabytes(plan.data)}`, back, `<div class="detail-grid">
     <section class="panel plan-facts">
       <h2>${text('planDetails')}</h2>
       ${metricList([...facts, ...commonConditions()])}
       ${catalogStamp()}
-      ${external('providerTerms', provider.terms)}
+      ${external('providerTerms', plan.purchase ? checkout : provider.terms)}
     </section>
     <aside class="panel purchase-panel" aria-label="${text('purchaseTitle')}">
       <div class="purchase-price"><span>${text('price')}</span><strong>${price(plan)} <small>USD</small></strong></div>
-      <div class="desktop-buy">${link('buy', checkout, 'button button-primary', 'arrow-right')}</div>
+      <div class="desktop-buy">${external('buy', checkout, 'button button-primary')}</div>
       <p class="note">${text('purchaseNotice')}</p>
+      <p class="note${plan.checkAvailability ? ' plan-availability' : ''}">${purchaseHint(plan)}</p>
       <div class="purchase-actions">
+        ${link('navPurchase', relatedPath('purchase', plan, from), 'text-action', 'arrow-right')}
         ${link('checkEsim', relatedPath('phone', plan, from), 'text-action', 'arrow-right')}
         ${link('install', relatedPath('setup', plan, from), 'text-action', 'arrow-right')}
       </div>
     </aside></div>
-    <div class="mobile-purchase"><div class="mobile-price"><strong>${price(plan)}</strong><small> USD</small></div>${link('buy', checkout, 'button button-primary', 'arrow-right')}</div>`, 'offer-page');
+    <div class="mobile-purchase"><div class="mobile-price"><strong>${price(plan)}</strong><small> USD</small></div>${external('buy', checkout, 'button button-primary')}</div>`, 'offer-page');
 }
 
 function deviceSteps() {
@@ -517,10 +673,13 @@ function renderChrome(active) {
   </div>`;
 }
 
-function render(navigate = false) {
-  const { name, plan, pair, from, result, anchor } = readRoute();
+function render(navigate = false, loadSharedFilters = false) {
+  const { name, plan, pair, from, result, anchor, query } = readRoute();
+  if (loadSharedFilters && query) restoreSharedFilters(query);
+  document.querySelector('.share-dialog[open]')?.close();
   const context = {
-    language: state.language, plans, providers, icon, plan,
+    language: state.language, plans: name === 'planner' ? plans.filter(item => !item.checkAvailability) : plans,
+    providers, icon, plan, purchaseHref: storefront, purchaseHint,
     planHref: selected => `#${planPath(selected, name === 'planner' ? 'planner' : from)}`,
     phoneHref: `#${relatedPath('phone', plan, from)}`,
     setupHref: `#${relatedPath('setup', plan, from)}`
@@ -538,6 +697,7 @@ function render(navigate = false) {
   renderChrome(anchor ?? (name === 'compare' || name === 'plan' ? 'plans' : name));
   app.innerHTML = views[name](context);
   mounts[name]?.(app, context);
+  updateDataGuide();
   saveTrip();
   if (navigate) {
     mobileMenu.open = false;
@@ -582,6 +742,12 @@ app.addEventListener('change', event => {
     state.dataNeeded = Number(control.value);
   } else if (control.id === 'plan-sort') {
     state.sort = control.value;
+  } else if (control.name === 'data-usage') {
+    state.usage = control.value;
+    const numberField = app.querySelector('#custom-days');
+    updateDataGuide(numberField.willValidate && !numberField.validity.valid);
+    saveTrip();
+    return;
   } else if (control.name === 'device') {
     state.device = control.value;
     app.querySelector('#device-steps').innerHTML = deviceSteps();
@@ -600,6 +766,7 @@ app.addEventListener('change', event => {
   } else {
     return;
   }
+  clearSharedQuery();
   refreshPlans();
 });
 
@@ -607,6 +774,7 @@ app.addEventListener('input', event => {
   const control = event.target;
   if (control.id !== 'custom-days') return;
   if (control.validity.valid) state.customDays = Number(control.value);
+  clearSharedQuery();
   refreshPlans();
 });
 
@@ -619,14 +787,22 @@ app.addEventListener('submit', event => {
 app.addEventListener('click', event => {
   const control = event.target.closest('[data-action]');
   if (!control) return;
+  if (control.dataset.action === 'share') showShare();
+  if (control.dataset.action === 'apply-estimate' && estimateData()) {
+    state.dataNeeded = estimateData();
+    app.querySelector('#data-needed').innerHTML = dataOptions();
+    clearSharedQuery();
+    refreshPlans();
+  }
   if (control.dataset.action === 'compare' && state.compare.size === 2) go(comparePath());
   if (control.dataset.action === 'reset') {
     state.duration = 'any';
     state.dataNeeded = 0;
+    clearSharedQuery();
     render();
     app.querySelector('#duration').focus();
   }
 });
 
-window.addEventListener('hashchange', () => render(true));
-render(Boolean(readRoute().anchor));
+window.addEventListener('hashchange', () => render(true, true));
+render(Boolean(readRoute().anchor), true);

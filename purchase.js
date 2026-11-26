@@ -148,7 +148,7 @@ const TourSIMPurchase = (() => {
     const back = plan ? context.planHref?.(plan) ?? `#plan/${plan.id}` : '#plans';
     const qrHint = { airalo: t.qrAiralo, enjoy: t.qrEnjoy }[plan?.provider] ?? t.qrDefault;
     const suffix = plan ? `/${plan.id}` : '';
-    const providerPayment = provider ? external(context, store(context, plan.provider), t.checkout.replace('{provider}', provider.name), 'button button-primary') : '';
+    const providerPayment = provider ? external(context, context.purchaseHref(plan), t.checkout.replace('{provider}', provider.name), 'button button-primary') : '';
     const qrHelp = help?.iosHelp ? `<div class="actions">${external(context, help.iosHelp, 'iPhone')}${external(context, help.androidHelp, 'Android')}</div>` :
       help?.qrHelp ? external(context, help.qrHelp, t.qrHelp) : '';
 
@@ -169,7 +169,8 @@ const TourSIMPurchase = (() => {
             <div><span class="carrier"><span class="provider-mark${plan.provider === 'enjoy' ? ' provider-enjoy' : ''}">${provider.initial}</span>${provider.name}</span>
               <div class="esim-selected-data">${metrics.data} <span>· ${metrics.days}</span></div></div>
             <strong class="esim-selected-price">${metrics.price}</strong>
-          </div><p class="note">${t.priceNote}</p>` : ''}
+          </div><p class="note">${t.priceNote}</p>
+          <p class="note${plan.checkAvailability ? ' plan-availability' : ''}">${context.purchaseHint(plan)}</p>` : ''}
           <div class="actions">
             ${plan ? internal(context, '#purchase', t.changePlan) : ''}
             ${internal(context, context.phoneHref ?? `#phone${suffix}`, t.checkPhone)}
