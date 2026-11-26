@@ -1,0 +1,149 @@
+.data-guide {
+  container-type: inline-size;
+  min-inline-size: 0;
+  margin-block-start: var(--s3);
+}
+
+.catalog-fields + .data-guide { margin-block: 0 var(--s4); }
+
+.data-guide > .data-guide-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  min-block-size: 48px;
+  padding: var(--s2) var(--s4);
+  border: 1px solid var(--line);
+  border-radius: var(--finder-control-radius, var(--control-radius));
+  background: var(--surface);
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 800;
+  list-style: none;
+  transition: border-color var(--fast) var(--ease), background-color var(--fast) var(--ease);
+}
+
+.data-guide-trigger::-webkit-details-marker { display: none; }
+.data-guide > .data-guide-trigger:hover { border-color: var(--line-hover); background: var(--blue-soft); }
+.data-guide-trigger .icon:last-child { margin-inline-start: auto; transition: transform var(--fast) var(--ease); }
+.data-guide[open] .data-guide-trigger .icon:last-child { transform: rotate(180deg); }
+
+.data-guide-card {
+  display: grid;
+  gap: var(--s4);
+  margin-block-start: var(--s2);
+  padding: clamp(var(--s4), 2.3cqi, var(--s5));
+}
+
+.finder-module > .data-guide .data-guide-card {
+  border-radius: var(--finder-control-radius);
+  box-shadow: none;
+}
+
+.data-guide-progress {
+  display: block;
+  width: 100%;
+  height: 6px;
+  appearance: none;
+  overflow: hidden;
+  border: 0;
+  border-radius: 6px;
+  background: var(--blue-soft);
+  color: var(--primary);
+}
+
+.data-guide-progress::-webkit-progress-bar { background: var(--blue-soft); }
+.data-guide-progress::-webkit-progress-value { border-radius: 6px; background: var(--primary); }
+.data-guide-progress::-moz-progress-bar { border-radius: 6px; background: var(--primary); }
+
+.data-guide-question {
+  color: var(--dark);
+  font-size: clamp(1.25rem, 3.7vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+
+.data-guide-days, .data-guide-choices, .data-guide-custom {
+  display: grid;
+  gap: var(--s2);
+}
+
+.data-guide-days { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.data-guide-days .data-guide-option { padding-inline: var(--s3); }
+
+.data-guide-card .data-guide-option {
+  justify-content: space-between;
+  min-height: 48px;
+  border-color: var(--control-line);
+  color: var(--dark);
+  font-size: 1rem;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+.data-guide-card .data-guide-option:hover, .data-guide-option[data-selected] {
+  border-color: var(--line-hover);
+  background: var(--blue-soft);
+  color: var(--primary);
+}
+
+.data-guide-custom label { font-weight: 750; }
+
+.data-guide-custom-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s2);
+  max-width: 25rem;
+}
+
+.data-guide-custom-controls .input { font-size: 1rem; }
+.data-guide-error { color: var(--danger); }
+.data-guide-actions .button { min-height: 44px; }
+
+.data-guide-result { display: grid; gap: var(--s4); align-items: start; }
+.data-guide-summary { display: grid; gap: var(--s2); }
+
+.data-guide-total {
+  color: var(--dark);
+  font-size: clamp(1.2rem, 3.6vw, 1.65rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.17;
+  overflow-wrap: anywhere;
+}
+
+.data-guide-total strong {
+  color: var(--primary);
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  letter-spacing: -.045em;
+}
+
+.data-guide-use { color: var(--muted); }
+
+.data-guide-match {
+  display: grid;
+  gap: var(--s3);
+  padding: clamp(var(--s3), 2cqi, var(--s5));
+  border: 1px solid var(--line);
+  border-radius: var(--control-radius);
+  background: var(--blue-soft);
+}
+
+.data-guide-match p { display: grid; }
+
+@container (min-width: 34rem) {
+  .data-guide-days { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@container (min-width: 43rem) {
+  .data-guide-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .data-guide-result { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); column-gap: var(--s5); }
+  .data-guide-result > .data-guide-actions { grid-column: 1 / -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .data-guide::details-content { transition: none; }
+  .data-guide > .data-guide-trigger, .data-guide-trigger .icon:last-child { transition: none; }
+}

@@ -17,7 +17,6 @@ const strings = {
   anyData: ['Any amount', 'Любой объём', 'Istalgan hajm'],
   fromData: ['At least', 'От', 'Kamida'],
   showPlans: ['Find eSIM', 'Найти eSIM', 'eSIM topish'],
-  finderData: ['Not sure how much data you need?', 'Не знаю, сколько интернета нужно', 'Qancha internet kerakligini bilmayman'],
   featured: ["Plans for your trip","Пакеты для вашей поездки","Safaringizga mos paketlar"],
   plans: ["Compare eSIM plans","Сравните пакеты eSIM","eSIM paketlarini solishtiring"],
   sort: ['Sort by', 'Сортировка', 'Saralash'],
@@ -96,15 +95,6 @@ const strings = {
   availability: ['Check availability', 'Уточните наличие', 'Mavjudligini tekshiring'],
   sellerAvailability: ['Check whether {data} for {duration} is still available from the provider.', 'Сверьте у провайдера наличие пакета {data} на {duration}.', 'Provayderdan {duration} uchun {data} paketining mavjudligini tekshiring.'],
   selectAtSeller: ['Choose {data} for {duration} on the provider’s site.', 'Выберите {data} на {duration} на сайте провайдера.', 'Provayder saytida {duration} uchun {data} paketini tanlang.'],
-  dataGuide: ['How much data do I need?', 'Сколько ГБ мне нужно?', 'Qancha GB kerak?'],
-  usageMaps: ['Maps and chats', 'Карты и чаты', 'Xarita va chatlar'],
-  usageSocial: ['Social media', 'Соцсети', 'Ijtimoiy tarmoqlar'],
-  usageVideo: ['Video', 'Видео', 'Video'],
-  usageEstimate: ['About {data} for {duration}', 'Около {data} на {duration}', '{duration} uchun taxminan {data}'],
-  usageNote: ['An estimate. Video quality and Wi-Fi affect data use.', 'Это ориентир. Расход зависит от качества видео и доступа к Wi‑Fi.', 'Bu taxmin. Sarf video sifati va Wi‑Fi’ga bog‘liq.'],
-  usageNeedsDuration: ['Choose a trip length to estimate data.', 'Выберите срок поездки, чтобы рассчитать объём.', 'Hisoblash uchun safar muddatini tanlang.'],
-  usageTooLarge: ['Matching packages have up to {data}.', 'Подходящие по сроку пакеты содержат до {data}.', 'Muddatga mos paketlarda {data} gacha bor.'],
-  applyEstimate: ['Apply to filters', 'Применить к фильтрам', 'Filtrlarga qo‘llash'],
   shareCompare: ['Share comparison', 'Поделиться сравнением', 'Solishtirishni ulashish'],
   shareUrl: ['Link', 'Ссылка', 'Havola'],
   shareLocal: ['This address is local. A public TourSIM address is needed to share it with other devices.', 'Это локальный адрес. Чтобы открыть ссылку на другом устройстве, TourSIM нужен публичный адрес.', 'Bu mahalliy manzil. Havolani boshqa qurilmada ochish uchun TourSIM ommaviy manzilda bo‘lishi kerak.'],
@@ -146,9 +136,7 @@ const strings = {
 
 const dayOptions = [['any', 'anyDuration'], ['7', 'short'], ['14', 'medium'], ['30', 'long'], ['custom', 'custom']];
 const dataChoices = [0, 1, 3, 5, 10];
-const usageProfiles = { usageMaps: 100, usageSocial: 300, usageVideo: 1000 };
-const maxTripDays = 365;
-const maxDataNeeded = Math.ceil(maxTripDays * Math.max(...Object.values(usageProfiles)) / 1000);
+const { maxDays: maxTripDays, maxFilterGb: maxDataNeeded } = TourSIMDataEstimate;
 const sortOptions = [['price', 'sortPrice'], ['data', 'sortData']];
 const headerNavigation = [['plans', 'headerPlans'], ['how-it-works', 'how'], ['coverage', 'headerCoverage']];
 const navigation = [['plans', 'navPlans'], ['how-it-works', 'how'], ['coverage', 'navCoverage'], ['planner', 'navPlanner'], ['phone', 'compatibility'], ['account', 'navAccount'], ['purchase', 'navPurchase'], ['faq', 'faq']];
@@ -165,7 +153,7 @@ let purchaseObserver;
 const getPlan = id => plans.find(plan => plan.id === id);
 const validDuration = value => dayOptions.some(([choice]) => choice === value);
 const validCustomDays = value => Number.isInteger(value) && value >= 1 && value <= maxTripDays;
-const validData = value => Number.isInteger(value) && value >= 0 && value <= maxDataNeeded;
+const validData = value => Number.isFinite(value) && value >= 0 && value <= maxDataNeeded;
 
 function initialLanguage() {
   let saved;
@@ -186,13 +174,12 @@ const state = {
   dataNeeded: validData(saved.dataNeeded) ? saved.dataNeeded : 0,
   sort: saved.sort === 'data' ? 'data' : 'price',
   compare: new Set(Array.isArray(saved.compare) ? saved.compare.filter(getPlan).slice(0, 2) : []),
-  usage: Object.hasOwn(usageProfiles, saved.usage) ? saved.usage : 'usageMaps',
   platform: saved.platform === 'android' ? 'android' : 'iphone'
 };
 
 function saveTrip() {
-  const { duration, customDays, dataNeeded, sort, compare, usage, platform } = state;
-  try { sessionStorage.setItem(storageKey, JSON.stringify({ duration, customDays, dataNeeded, sort, compare: [...compare], usage, platform })); } catch {}
+  const { duration, customDays, dataNeeded, sort, compare, platform } = state;
+  try { sessionStorage.setItem(storageKey, JSON.stringify({ duration, customDays, dataNeeded, sort, compare: [...compare], platform })); } catch {}
 }
 
 const text = key => strings[key][languages.indexOf(state.language)];
@@ -322,7 +309,8 @@ function trimComparison(items) {
 
 function dataOptions() {
   const amounts = [...new Set([...dataChoices, state.dataNeeded])].sort((first, second) => first - second);
-  return amounts.map(value => option(value, value ? `${text('fromData')} ${gigabytes(value)}` : text('anyData'), value === state.dataNeeded)).join('');
+  const number = new Intl.NumberFormat(state.language, { maximumFractionDigits: 5 });
+  return amounts.map(value => option(value, value ? `${text('fromData')} ${gigabytes(number.format(value))}` : text('anyData'), value === state.dataNeeded)).join('');
 }
 
 function tripFields() {
@@ -341,13 +329,13 @@ function tripFields() {
     </div>`;
 }
 
-function finder() {
+function finder(context) {
   return `<div class="panel finder-module">
     <form class="finder" id="finder">
       <div class="finder-fields">${tripFields()}</div>
       <button class="button button-primary" type="submit">${text('showPlans')}${icon('arrow-right')}</button>
     </form>
-    ${link('finderData', 'planner', 'text-action finder-data')}
+    ${TourSIMDataGuide.render(context)}
   </div>`;
 }
 
@@ -355,46 +343,6 @@ function tripPresets() {
   return `<div class="trip-presets" role="group" aria-label="${text('presets')}">
     ${dayOptions.slice(1, 4).map(([value, label]) => `<button type="button" data-action="trip-preset" data-duration="${value}" aria-pressed="${value === state.duration}">${text(label)}</button>`).join('')}
   </div>`;
-}
-function estimateData() {
-  return Math.ceil(tripDays() * usageProfiles[state.usage] / 1000);
-}
-
-function estimateSummary(amount) {
-  if (!amount) return text('usageNeedsDuration');
-  return text('usageEstimate').replace('{data}', gigabytes(amount)).replace('{duration}', days(tripDays()));
-}
-
-function dataGuide() {
-  const amount = estimateData();
-  return `<details class="data-guide">
-    <summary>${icon('wifi')}${text('dataGuide')}${icon('chevron-down')}</summary>
-    <div class="data-guide-body">
-      <fieldset class="device-switch usage-choices">
-        <legend class="sr-only">${text('dataGuide')}</legend>
-        ${Object.keys(usageProfiles).map(key => `<label><input type="radio" name="data-usage" value="${key}"${state.usage === key ? ' checked' : ''}><span>${text(key)}</span></label>`).join('')}
-      </fieldset>
-      <div class="data-guide-result">
-        <div role="status"><p id="data-estimate">${estimateSummary(amount)}</p><p class="note" id="data-estimate-limit" hidden></p></div>
-        <button class="button button-secondary" type="button" data-action="apply-estimate"${amount ? '' : ' disabled'}>${text('applyEstimate')}</button>
-      </div>
-      <p class="note">${text('usageNote')}</p>
-      ${link('navPlanner', 'planner', 'text-action', 'arrow-right')}
-    </div>
-  </details>`;
-}
-
-function updateDataGuide(invalid = false) {
-  const estimate = app.querySelector('#data-estimate');
-  if (!estimate) return;
-  const amount = invalid ? 0 : estimateData();
-  const limit = app.querySelector('#data-estimate-limit');
-  const packages = plans.filter(plan => plan.days >= tripDays() && !plan.checkAvailability);
-  const maxAvailable = Math.max(0, ...packages.map(plan => plan.data));
-  estimate.textContent = estimateSummary(amount);
-  limit.hidden = !maxAvailable || amount <= maxAvailable;
-  limit.textContent = limit.hidden ? '' : text('usageTooLarge').replace('{data}', gigabytes(maxAvailable));
-  app.querySelector('[data-action="apply-estimate"]').disabled = !amount;
 }
 
 function sortField() {
@@ -449,7 +397,7 @@ function planResults(items, compare) {
     ${items.length > shown.length ? `<div class="show-all"><a href="#plans" class="button button-secondary">${text('showCatalogCount').replace('{total}', items.length)}${icon('arrow-right')}</a></div>` : ''}`;
 }
 
-function resultsSection(items, compare) {
+function resultsSection(items, compare, context) {
   const heading = compare ? 'h1' : 'h2';
   return `<section class="results-section" aria-labelledby="catalog-heading">
     <div class="results-heading">
@@ -459,8 +407,8 @@ function resultsSection(items, compare) {
       </div>
       ${sortField()}
     </div>
-    ${compare ? `<div class="panel catalog-fields">${tripFields()}${tripPresets()}</div>${dataGuide()}` : ''}
-    <div id="catalog-results" data-compare="${compare}">${planResults(items, compare)}</div>
+    ${compare ? `<div class="panel catalog-fields">${tripFields()}${tripPresets()}</div>${TourSIMDataGuide.render(context)}` : ''}
+    <div id="catalog-results" data-compare="${compare}" tabindex="-1">${planResults(items, compare)}</div>
   </section>`;
 }
 
@@ -488,11 +436,11 @@ const faqItems = [
   ['faqPassport', 'faqPassportBody'], ['faqPayment', 'purchaseNotice']
 ];
 
-function home() {
+function home(context) {
   return `${hero()}
-    ${finder()}
+    ${finder(context)}
     <div class="container home-content">
-      ${resultsSection(availablePlans(), false)}
+      ${resultsSection(availablePlans(), false, context)}
       <section class="home-section" aria-labelledby="how-it-works">
         <h2 class="section-title" id="how-it-works" tabindex="-1">${text('how')}</h2>
         <ol class="how-list">${howSteps.map(([scene, title, body, route]) => `<li>
@@ -547,12 +495,12 @@ function compareChips() {
   }).join('');
 }
 
-function catalog() {
+function catalog(context) {
   const items = availablePlans();
   trimComparison(items);
   return `<div class="container page catalog-page">
     <div class="page-top"><a class="text-action" href="#home">${icon('arrow-left')}${text('back')}</a></div>
-    ${resultsSection(items, true)}
+    ${resultsSection(items, true, context)}
     ${compareTray()}
   </div>`;
 }
@@ -579,7 +527,6 @@ function refreshPlans() {
   const numberField = app.querySelector('#custom-days');
   const count = app.querySelector('#results-count');
   const invalid = numberField.willValidate && !numberField.validity.valid;
-  updateDataGuide(invalid);
   results.hidden = invalid;
   if (invalid) {
     numberField.setAttribute('aria-invalid', 'true');
@@ -603,6 +550,19 @@ function refreshPlans() {
   count.className = compare || items.length <= 3 ? 'sr-only' : 'note';
   count.textContent = resultSummary(items.length, compare);
   updateCompareTray();
+}
+
+function applyEstimate({ days, totalGb }) {
+  state.customDays = days;
+  state.dataNeeded = totalGb;
+  app.querySelector('#custom-days').value = days;
+  app.querySelector('#data-needed').innerHTML = dataOptions();
+  const duration = app.querySelector('#duration');
+  duration.value = 'custom';
+  duration.dispatchEvent(new Event('change', { bubbles: true }));
+  const results = app.querySelector('#catalog-results');
+  results.scrollIntoView({ block: 'start' });
+  results.focus({ preventScroll: true });
 }
 
 function page(title, back, content, className = '') {
@@ -635,8 +595,8 @@ function metricList(metrics) {
   return `<dl class="metrics">${metrics.map(([key, value, source]) => `<div>${icon(glyphs[key])}<dt>${text(key)}</dt><dd>${metricContent(value, source)}</dd></div>`).join('')}</dl>`;
 }
 
-function compare(pair) {
-  if (pair.some(plan => !plan) || pair[0].id === pair[1].id) return catalog();
+function compare(pair, context) {
+  if (pair.some(plan => !plan) || pair[0].id === pair[1].id) return catalog(context);
   state.compare = new Set(pair.map(plan => plan.id));
   const metrics = pair.map(planMetrics);
   return page(text('comparison'), 'plans', `<div class="panel comparison-panel">
@@ -759,14 +719,14 @@ function render(navigate = false, loadSharedFilters = false) {
   } : null;
   const context = {
     language: state.language, plans: name === 'planner' ? plans.filter(item => !item.checkAvailability) : plans,
-    providers, icon, plan, purchaseHref: storefront, purchaseHint, authDraft,
+    providers, icon, plan, purchaseHref: storefront, purchaseHint, authDraft, applyEstimate,
     planHref: selected => `#${planPath(selected, name === 'planner' ? 'planner' : from)}`,
     phoneCheck: text('phoneCheck'),
     phoneHref: `#${relatedPath('phone', plan, from)}`, phoneLabel: text('checkEsim'),
     setupHref: `#${relatedPath('setup', plan, from)}`
   };
   const views = {
-    home, plans: catalog, compare: () => compare(pair), plan: () => details(plan, from),
+    home, plans: catalog, compare: () => compare(pair, context), plan: () => details(plan, from),
     setup: () => setup(plan, from), phone: () => phone(plan, from),
     planner: TourSIMPlanner.render, coverage: TourSIMCoverage.render,
     purchase: TourSIMPurchase.renderPurchase, account: TourSIMPurchase.renderAccount
@@ -780,7 +740,7 @@ function render(navigate = false, loadSharedFilters = false) {
   homeBanner = app.querySelector('.hero');
   document.body.classList.toggle('home-route', Boolean(homeBanner));
   mounts[name]?.(app, context);
-  updateDataGuide();
+  TourSIMDataGuide.mount(app, context);
   saveTrip();
   if (navigate) {
     if (mobileMenu.open) mobileMenu.close();
@@ -839,12 +799,6 @@ app.addEventListener('change', event => {
     app.querySelector('#phone-feedback').hidden = true;
     saveTrip();
     return;
-  } else if (control.name === 'data-usage') {
-    state.usage = control.value;
-    const numberField = app.querySelector('#custom-days');
-    updateDataGuide(numberField.willValidate && !numberField.validity.valid);
-    saveTrip();
-    return;
   } else if (control.name === 'compare' && getPlan(control.value)) {
     if (control.checked && state.compare.size < 2) state.compare.add(control.value);
     else state.compare.delete(control.value);
@@ -892,12 +846,6 @@ app.addEventListener('click', event => {
   }
   if (control.dataset.action === 'phone-help') app.querySelector('#phone-feedback').hidden = false;
   if (control.dataset.action === 'share') showShare();
-  if (control.dataset.action === 'apply-estimate' && estimateData()) {
-    state.dataNeeded = estimateData();
-    app.querySelector('#data-needed').innerHTML = dataOptions();
-    clearSharedQuery();
-    refreshPlans();
-  }
   if (control.dataset.action === 'compare' && state.compare.size === 2) go(comparePath());
   if (control.dataset.action === 'reset') {
     state.duration = 'any';

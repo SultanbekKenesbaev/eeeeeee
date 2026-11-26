@@ -166,7 +166,6 @@ a.button:focus-visible, button:focus-visible, summary:focus-visible { outline-of
   border-radius: clamp(28px, 2.35vw, 36px);
   box-shadow: var(--shadow-strong);
 }
-.finder-data { margin-top: var(--s1); font-size: .88rem; }
 .finder {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) auto; gap: var(--s3); align-items: end;
 }
@@ -208,8 +207,6 @@ a.button:focus-visible, button:focus-visible, summary:focus-visible { outline-of
 .trip-presets button:hover { border-color: var(--line-hover); color: var(--primary); }
 .trip-presets button[aria-pressed="true"] { background: var(--blue-soft); color: var(--primary); border-color: var(--line-hover); }
 .catalog-fields { padding: var(--s5); }
-.data-guide-body { box-shadow: var(--shadow); }
-.data-guide-body > .text-action { justify-self: start; }
 .results-section { margin-top: var(--s7); }
 .catalog-page .results-section { margin-top: 0; }
 .results-heading { margin-bottom: var(--s5); }

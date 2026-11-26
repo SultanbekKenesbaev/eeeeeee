@@ -203,19 +203,6 @@ select.input { padding-right: 32px; background: var(--background) var(--chevron)
 .catalog-page .results-section { margin-top: 6px; }
 .catalog-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: end; padding: 15px; margin-bottom: 17px; }
 .catalog-fields:has(.custom-row:not([hidden])) { grid-template-columns: minmax(0, 1fr) minmax(110px, .7fr) minmax(0, 1fr); }
-.data-guide { margin-top: 7px; }
-.catalog-fields + .data-guide { margin: -9px 0 13px; }
-.data-guide summary { display: flex; align-items: center; gap: 7px; width: fit-content; min-height: 44px; color: var(--primary); font-size: .9rem; font-weight: 750; cursor: pointer; list-style: none; }
-.data-guide summary::-webkit-details-marker { display: none; }
-.data-guide summary:hover { text-decoration: underline; text-underline-offset: 4px; }
-.data-guide summary .icon:last-child { transition: transform .18s; }
-.data-guide[open] summary .icon:last-child { transform: rotate(180deg); }
-.data-guide-body { display: grid; gap: 9px; padding: 13px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); }
-.data-guide .usage-choices { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 530px; font-size: .87rem; }
-.usage-choices span { text-align: center; line-height: 1.3; }
-.data-guide-result { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
-.data-guide-result button { min-height: 44px; font-size: .88rem; }
-#data-estimate { font-weight: 800; }
 .plan-facts h2, .shared-conditions h2 { font-size: 1.13rem; line-height: 1.25; font-weight: 800; }
 .compare-tray, .mobile-purchase { position: fixed; z-index: 9; left: 50%; bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; width: min(100% - 24px, 540px); padding: 9px 13px; border: 1px solid var(--line); border-radius: 15px; background: var(--white); box-shadow: var(--shadow-strong); transform: translateX(-50%); font-weight: 800; }
 .compare-tray .button { flex: none; }

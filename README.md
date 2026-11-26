@@ -5,7 +5,7 @@ Mobile-first catalog for comparing prepaid travel eSIM data packages for Uzbekis
 Run `node server.mjs` with Node.js 24 or later and open `http://127.0.0.1:4273`. There are no npm dependencies or build steps. The Node server serves both the site and the account API.
 
 - Filter Airalo and Enjoy eSIM data packages by trip length and gigabytes in EN, RU, or UZ.
-- Estimate data for a trip and apply the estimate to the filters. Share comparisons with a link that retains the current filters.
+- Estimate mobile data with one question at a time on the home page or in the catalog. Apply the exact trip length and estimate, including a 25% reserve, to the filters. Share comparisons with a link that retains the current filters.
 - Use the plan finder to estimate data from Instagram, YouTube, Telegram, and maps and choose a verified package within your budget.
 - Select cities on the coverage map to see documented 4G and links to the operator maps. The boundary uses [Natural Earth](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/).
 - Compare price, validity, network, hotspot and top-up terms, with links to provider sources. The catalog only includes data plans for which the provider discloses no identity verification.
