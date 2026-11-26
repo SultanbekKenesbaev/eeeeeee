@@ -1,0 +1,152 @@
+.planner-page {
+  gap: clamp(20px, 4vw, 34px);
+  padding-top: clamp(24px, 5vw, 54px);
+}
+
+.planner-heading {
+  display: grid;
+  gap: 10px;
+}
+
+.planner-heading > p {
+  max-width: 46rem;
+  color: var(--muted);
+}
+
+.planner-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+}
+
+.planner-controls,
+.planner-result {
+  display: grid;
+  min-width: 0;
+  gap: 16px;
+  padding: clamp(14px, 3vw, 24px);
+}
+
+.planner-controls h2,
+.planner-usage legend {
+  font-size: 1.12rem;
+  font-weight: 800;
+}
+
+.planner-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 12px;
+}
+
+.planner-field-error {
+  color: var(--danger);
+  font-size: .8rem;
+}
+
+.planner-usage {
+  display: grid;
+  min-width: 0;
+  gap: 10px;
+  margin: 2px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.planner-usage legend {
+  margin-bottom: 3px;
+  padding: 0;
+}
+
+.planner-method {
+  border-top: 1px solid var(--line);
+}
+
+.planner-method summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+  padding-block: 6px;
+  cursor: pointer;
+  list-style: none;
+  color: var(--primary);
+  font-size: .9rem;
+  font-weight: 800;
+}
+
+.planner-method summary::-webkit-details-marker { display: none; }
+.planner-method[open] summary .icon { transform: rotate(180deg); }
+
+.planner-estimate {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 0 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.planner-estimate h2 {
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 800;
+}
+
+.planner-estimate p {
+  color: var(--primary);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -.045em;
+}
+
+.planner-match {
+  display: grid;
+  gap: 11px;
+}
+
+.planner-match h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.planner-plan {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.planner-plan > div {
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--background);
+  overflow-wrap: anywhere;
+}
+
+.planner-plan dt {
+  color: var(--muted);
+  font-size: .78rem;
+}
+
+.planner-plan dd {
+  font-size: .93rem;
+  font-weight: 800;
+}
+
+@media (max-width: 780px) {
+  .planner-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 420px) {
+  .planner-field-grid { align-items: start; gap: 8px; }
+  .planner-controls .input { font-size: .88rem; }
+  .planner-plan > div { padding-inline: 8px; }
+}
+
+@media (max-width: 345px) {
+  .planner-field-grid { grid-template-columns: minmax(0, 1fr); }
+}

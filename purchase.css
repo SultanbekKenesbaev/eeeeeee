@@ -1,0 +1,125 @@
+.esim-flow { gap: clamp(18px, 3vw, 28px); }
+.esim-flow-lede { color: var(--muted); max-width: 56ch; }
+.esim-flow-grid, .esim-account-grid {
+  display: grid;
+  gap: clamp(14px, 2vw, 22px);
+  align-items: start;
+}
+.esim-flow-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
+.esim-account-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, .75fr); }
+.esim-flow-panel {
+  display: grid;
+  min-width: 0;
+  gap: 14px;
+  padding: clamp(15px, 2.5vw, 23px);
+}
+.esim-flow-panel h2, .esim-account-list h2 {
+  font-size: 1.12rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.esim-flow-form { display: grid; gap: 10px; }
+.esim-field {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+  font-weight: 750;
+}
+.esim-field > span { font-size: .86rem; }
+.esim-field > .input { font-size: .9rem; }
+.esim-field > input[type="date"] { inline-size: 100%; }
+.esim-selected {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 14px;
+  align-items: center;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--background);
+}
+.esim-selected-data { margin-top: 7px; font-size: 1.2rem; font-weight: 800; }
+.esim-selected-data > span { color: var(--muted); font-size: .88rem; font-weight: 700; }
+.esim-selected-price {
+  color: var(--primary);
+  font-size: clamp(1.3rem, 3.3vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  white-space: nowrap;
+}
+.esim-purchase-steps { gap: 0; list-style: none; }
+.esim-purchase-steps > li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding-block: 12px;
+}
+.esim-purchase-steps > li:first-child { padding-top: 0; }
+.esim-purchase-steps > li:last-child { padding-bottom: 0; }
+.esim-purchase-steps > li + li { border-top: 1px solid var(--line); }
+.esim-purchase-steps p { margin-top: 4px; color: var(--muted); font-size: .9rem; }
+.esim-purchase-steps .button { margin-top: 10px; }
+.esim-track {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 20px;
+}
+.esim-track > p { color: var(--muted); }
+.esim-track > .esim-feedback { flex-basis: 100%; }
+.esim-feedback { color: var(--success-dark); font-size: .9rem; }
+.esim-feedback:empty { position: absolute; }
+.esim-feedback[data-error="true"] { color: var(--danger); }
+.esim-account-list, .esim-account-records {
+  display: grid;
+  min-width: 0;
+  gap: 9px;
+}
+.esim-account-records { gap: 13px; margin-top: 4px; }
+.esim-empty { display: flex; gap: 12px; align-items: center; padding: clamp(15px, 2.5vw, 23px); color: var(--muted); }
+.esim-record-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+}
+.esim-record-term { color: var(--muted); font-size: .87rem; }
+.esim-record-metrics { grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr)); }
+.esim-record-metrics small { display: block; color: var(--muted); font-size: .77rem; }
+.esim-record-links { gap: 0 15px; }
+.esim-record-edit { border-top: 1px solid var(--line); }
+.esim-record-edit summary {
+  min-height: 44px;
+  padding-block: 10px;
+  color: var(--primary);
+  font-size: .9rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+.esim-edit-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.esim-edit-form > .note, .esim-edit-form > .actions { grid-column: 1 / -1; }
+.esim-remove {
+  min-height: 44px;
+  padding: 7px 0;
+  border: 0;
+  color: var(--danger);
+  background: none;
+  font-size: .9rem;
+  font-weight: 750;
+}
+.esim-remove:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 720px) {
+  .esim-flow-grid, .esim-account-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 380px) {
+  .esim-edit-form { grid-template-columns: minmax(0, 1fr); }
+  .esim-purchase-steps > li { gap: 8px; }
+  .esim-purchase-steps .icon-tile { width: 36px; height: 36px; }
+  .esim-purchase-steps .icon-tile .icon { width: 19px; height: 19px; }
+}
