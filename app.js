@@ -18,11 +18,8 @@ const strings = {
   anyData: ['Any amount', 'Любой объём', 'Istalgan hajm'],
   fromData: ['At least', 'От', 'Kamida'],
   showPlans: ['Show eSIM plans', 'Показать пакеты', 'Paketlarni ko‘rish'],
-  checkEsim: ["Check phone compatibility","Проверить совместимость","Telefon mosligini tekshirish"],
   featured: ["Plans for your trip","Пакеты для вашей поездки","Safaringizga mos paketlar"],
   plans: ["Compare eSIM plans","Сравните пакеты eSIM","eSIM paketlarini solishtiring"],
-  checkedOn: ['Sources checked', 'Источники проверены', 'Manbalar tekshirildi'],
-  publishedPrices: ['Price per package in USD. Confirm with the seller.', 'Цена за пакет в USD. Итоговая цена у продавца.', 'Paket narxi USDda. Yakuniy narx sotuvchida.'],
   sort: ['Sort by', 'Сортировка', 'Saralash'],
   sortPrice: ['Lowest price', 'Сначала дешевле', 'Avval arzonlari'],
   sortData: ['Most data', 'Больше интернета', 'Internet hajmi bo‘yicha'],
@@ -50,20 +47,10 @@ const strings = {
   activation: ['Package starts', 'Когда начинается срок', 'Paket qachon boshlanadi'],
   firstNetwork: ['On first connection to a supported network', 'При первом подключении к поддерживаемой сети', 'Mos tarmoqqa birinchi ulanishda'],
   details: ["View plan","Смотреть пакет","Paketni ko‘rish"],
-  providerTerms: ['Provider terms', 'Условия провайдера', 'Provayder shartlari'],
   buy: ["Continue to provider","Перейти к провайдеру","Provayder saytiga o‘tish"],
   purchaseNotice: ['Pay and receive your eSIM on the provider’s site.', 'Оплата и получение eSIM у провайдера.', 'To‘lov va eSIM olish provayder saytida.'],
-  tripMore: ['More offers on Trip.com', 'Другие предложения на Trip.com', 'Trip.com’dagi boshqa takliflar'],
-  tripNote: ['Check prices and ID requirements on Trip.com.', 'Проверьте цену и требования к документам на Trip.com.', 'Narx va hujjat talablarini Trip.com’da tekshiring.'],
-  checkPhone: ['Does your phone support eSIM?', 'Ваш телефон поддерживает eSIM?', 'Telefoningiz eSIM’ni qo‘llaydimi?'],
-  beforePurchase: ['Before you buy', 'Перед покупкой', 'Xariddan oldin'],
-  checkPhoneLink: ['Check your phone', 'Проверить телефон', 'Telefonni tekshirish'],
   commonConditions: ['Shared conditions', 'Общие условия', 'Umumiy shartlar'],
-  unlocked: ['Before buying, confirm the phone is unlocked for other networks.', 'Перед покупкой убедитесь, что телефон не заблокирован под одного оператора.', 'Xariddan oldin telefon boshqa operatorlarga ochiq ekanini tekshiring.'],
-  esimAvailable: ['I see “Add eSIM”', 'Есть «Добавить eSIM»', '«eSIM qo‘shish» bor'],
-  esimUnknown: ['Not available or not sure', 'Нет пункта или не уверен', 'Yo‘q yoki ishonchim komil emas'],
-  unsupported: ['Don’t buy an eSIM yet', 'Пока не покупайте eSIM', 'Hozircha eSIM sotib olmang'],
-  fallback: ['Check your exact phone model, or ask your current carrier about a roaming data package for Uzbekistan.', 'Уточните поддержку eSIM для своей модели или проверьте интернет-пакет для Узбекистана у своего оператора.', 'Telefon modelingizni tekshiring yoki operatoringizdan O‘zbekiston uchun rouming internet paketini so‘rang.'],
+  phoneCheck: ['Look for “Add eSIM” in your phone’s mobile network settings and make sure the phone is carrier-unlocked.', 'Найдите «Добавить eSIM» в настройках мобильной сети и убедитесь, что телефон не заблокирован под одного оператора.', 'Mobil tarmoq sozlamalaridan «eSIM qo‘shish» bandini toping va telefon bitta operatorga bog‘lanmaganini tekshiring.'],
   install: ['How to install', 'Как установить', 'Qanday o‘rnatiladi'],
   installWifi: ['Install the eSIM over Wi-Fi using the provider’s instructions.', 'Установите eSIM по Wi‑Fi по инструкции провайдера.', 'Provayder yo‘riqnomasi bo‘yicha eSIM’ni Wi‑Fi orqali o‘rnating.'],
   installData: ['In Uzbekistan, choose the travel eSIM for mobile data.', 'В Узбекистане выберите туристическую eSIM для мобильного интернета.', 'O‘zbekistonda mobil internet uchun sayohat eSIM’ini tanlang.'],
@@ -74,9 +61,8 @@ const strings = {
   navPlanner: ['Plan finder', 'Умный подбор', 'Paket tanlash'],
   navCoverage: ['Coverage', 'Карта покрытия', 'Qamrov xaritasi'],
   navPurchase: ['Purchase guide', 'Как купить eSIM', 'eSIM xarid qilish'],
-  navAccount: ['My eSIMs', 'Мои eSIM', 'Mening eSIMlarim'],
+  navAccount: ['My eSIMs', 'Личный кабинет', 'Mening eSIMlarim'],
   how: ["How it works","Как это работает","Qanday ishlaydi"],
-  compatibility: ["Compatibility","Совместимость","Moslik"],
   faq: ["FAQ","Частые вопросы","Savol-javob"],
   navLabel: ["Main navigation","Основная навигация","Asosiy navigatsiya"],
   footerLabel: ["Footer navigation","Навигация в подвале","Sahifa oxiri navigatsiyasi"],
@@ -92,6 +78,8 @@ const strings = {
   connectTitle: ["Connect on arrival","Подключитесь по приезде","Yetib kelgach ulaning"],
   connectBody: ["Follow the provider’s instructions and select the travel eSIM for mobile data.","Следуйте инструкции провайдера и выберите туристическую eSIM для мобильного интернета.","Provayder yo‘riqnomasiga amal qiling va mobil internet uchun sayohat eSIM’ini tanlang."],
   faqCalls: ["Can I make calls or send SMS?","Можно ли звонить и отправлять SMS?","Qo‘ng‘iroq qilish yoki SMS yuborish mumkinmi?"],
+  faqPhone: ['How do I check whether my phone supports eSIM?', 'Как проверить, поддерживает ли телефон eSIM?', 'Telefon eSIM’ni qo‘llashini qanday tekshiraman?'],
+  faqPhoneBody: ['On iPhone, look under Cellular or Mobile Data. On Android, look under SIMs or SIM manager. Find “Add eSIM” and verify your exact model before buying if the option is missing.', 'На iPhone откройте «Сотовая связь» или «Мобильные данные», на Android — «SIM-карты» или «Диспетчер SIM». Найдите «Добавить eSIM». Если пункта нет, уточните поддержку eSIM для своей модели перед покупкой.', 'iPhone’da «Mobil aloqa» yoki «Mobil ma’lumotlar», Android’da «SIM-kartalar» yoki «SIM menejeri» bo‘limini oching. «eSIM qo‘shish» bandini qidiring. Agar band bo‘lmasa, xariddan oldin telefon modelingiz eSIM’ni qo‘llashini tekshiring.'],
   faqActivation: ["When does the plan start?","Когда начинает действовать пакет?","Paket qachon ishlay boshlaydi?"],
   faqActivationBody: ["The listed plans start when the eSIM first connects to a supported network.","У пакетов из каталога срок начинается при первом подключении к поддерживаемой сети.","Katalogdagi paketlar eSIM mos tarmoqqa ilk bor ulanganda ishlay boshlaydi."],
   faqPassport: ["Do I need a passport to buy a plan?","Нужен ли паспорт для покупки?","Xarid uchun pasport kerakmi?"],
@@ -99,17 +87,6 @@ const strings = {
   faqPayment: ["Where do I pay and receive the eSIM?","Где оплатить и получить eSIM?","eSIM uchun qayerda to‘lov qilinadi va u qayerdan olinadi?"],
   planDetails: ["Plan details","Условия пакета","Paket shartlari"],
   purchaseTitle: ["Buy from the provider","Покупка у провайдера","Provayderdan xarid qilish"],
-  selectedPlan: ["Selected plan","Выбранный пакет","Tanlangan paket"],
-  deviceType: ["Phone type","Тип телефона","Telefon turi"],
-  openSettings: ["Open Settings on your phone.","Откройте настройки телефона.","Telefon sozlamalarini oching."],
-  iphoneCellular: ["Tap Cellular or Mobile Data.","Откройте «Сотовая связь» или «Мобильные данные».","«Mobil aloqa» yoki «Mobil ma’lumotlar»ni tanlang."],
-  androidSim: ["Find SIMs or SIM manager under Network & internet or Connections.","В разделе «Сеть и интернет» или «Подключения» откройте «SIM-карты» или «Диспетчер SIM».","«Tarmoq va internet» yoki «Ulanishlar» bo‘limidan «SIM-kartalar» yoki «SIM menejeri»ni oching."],
-  iphoneAdd: ["Look for Add eSIM or Set Up Cellular.","Найдите «Добавить eSIM» или «Настроить сотовую связь».","«eSIM qo‘shish» yoki «Mobil aloqani sozlash» bandini qidiring."],
-  androidAdd: ["Look for Add eSIM or an eSIM option under Add SIM. Names vary by device.","Найдите «Добавить eSIM» или пункт eSIM в меню «Добавить SIM». Название зависит от модели.","«eSIM qo‘shish»ni yoki «SIM qo‘shish»dagi eSIM bandini qidiring. Nomi modelga bog‘liq."],
-  unlockedTitle: ["Check the carrier lock","Проверьте блокировку оператора","Operator blokirovkasini tekshiring"],
-  supported: ["Your phone has an eSIM option","В телефоне есть пункт eSIM","Telefonda eSIM bandi bor"],
-  backToPlan: ["Return to selected plan","Вернуться к пакету","Tanlangan paketga qaytish"],
-  backToPlans: ["Browse plans","К списку пакетов","Paketlar ro‘yxatiga"],
   hotspot: ['Hotspot', 'Раздача интернета', 'Internet ulashish'],
   topUp: ['Top-up', 'Пополнение', 'To‘ldirish'],
   airaloHotspot: ['Depends on your phone and network', 'Зависит от телефона и сети', 'Telefon va tarmoqqa bog‘liq'],
@@ -143,7 +120,7 @@ const usageProfiles = { usageMaps: 100, usageSocial: 300, usageVideo: 1000 };
 const maxTripDays = 365;
 const maxDataNeeded = Math.ceil(maxTripDays * Math.max(...Object.values(usageProfiles)) / 1000);
 const sortOptions = [['price', 'sortPrice'], ['data', 'sortData']];
-const headerNavigation = [['plans', 'navPlans'], ['planner', 'navPlanner'], ['coverage', 'navCoverage'], ['phone', 'compatibility'], ['account', 'navAccount']];
+const headerNavigation = [['plans', 'navPlans'], ['planner', 'navPlanner'], ['coverage', 'navCoverage'], ['account', 'navAccount']];
 const navigation = [...headerNavigation, ['purchase', 'navPurchase'], ['how-it-works', 'how'], ['faq', 'faq']];
 const planOrigins = ['home', 'plans', 'compare', 'planner'];
 const storageKey = 'toursim-trip';
@@ -174,13 +151,12 @@ const state = {
   dataNeeded: validData(saved.dataNeeded) ? saved.dataNeeded : 0,
   sort: saved.sort === 'data' ? 'data' : 'price',
   compare: new Set(Array.isArray(saved.compare) ? saved.compare.filter(getPlan).slice(0, 2) : []),
-  device: saved.device === 'android' ? 'android' : 'iphone',
   usage: Object.hasOwn(usageProfiles, saved.usage) ? saved.usage : 'usageMaps'
 };
 
 function saveTrip() {
-  const { duration, customDays, dataNeeded, sort, compare, device, usage } = state;
-  try { sessionStorage.setItem(storageKey, JSON.stringify({ duration, customDays, dataNeeded, sort, compare: [...compare], device, usage })); } catch {}
+  const { duration, customDays, dataNeeded, sort, compare, usage } = state;
+  try { sessionStorage.setItem(storageKey, JSON.stringify({ duration, customDays, dataNeeded, sort, compare: [...compare], usage })); } catch {}
 }
 
 const text = key => strings[key][languages.indexOf(state.language)];
@@ -196,7 +172,7 @@ const icon = name => `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="
 const option = (value, label, selected) => `<option value="${value}"${selected ? ' selected' : ''}>${label}</option>`;
 const optionList = (options, selected) => options.map(([value, label]) => option(value, text(label), value === selected)).join('');
 const link = (label, route, style = 'button button-secondary', iconName) => `<a class="${style}" href="#${route}">${text(label)}${iconName ? icon(iconName) : ''}</a>`;
-const external = (label, url, style = 'text-action') => `<a class="${style}" href="${url}" target="_blank" rel="noopener noreferrer">${text(label)}${icon('arrow-up-right')}</a>`;
+const external = (label, url, style) => `<a class="${style}" href="${url}" target="_blank" rel="noopener noreferrer">${text(label)}${icon('arrow-up-right')}</a>`;
 const comparePath = () => `compare/${[...state.compare].join('/')}`;
 function storefront(plan) {
   const urls = plan.purchase ?? providers[plan.provider].store;
@@ -220,18 +196,15 @@ function relatedPath(name, plan, from) {
 
 function readRoute() {
   const [path, query] = location.hash.slice(1).split('?', 2);
-  const [name, id, origin, status] = path.split('/');
+  const [name, id, origin] = path.split('/');
   const plan = getPlan(id);
   const from = plan ? planOrigins.includes(origin) ? origin : 'plans' : id === 'plans' ? 'plans' : 'home';
   if (name === 'plans') return { name, query };
-  if (['planner', 'coverage', 'account'].includes(name)) return { name };
-  if (name === 'purchase') return { name, plan, from };
+  if (['planner', 'coverage'].includes(name)) return { name };
+  if (name === 'purchase' || name === 'account') return { name, plan, from };
   if (name === 'compare') return { name, query, pair: [plan, getPlan(origin)] };
   if (name === 'plan' && plan) return { name, plan, from };
-  if (name === 'phone') {
-    const result = [id, origin, status].find(value => value === 'supported' || value === 'unsupported');
-    return { name, plan, from, result };
-  }
+  if (name === 'phone') return { name: 'setup', plan, from, redirect: relatedPath('setup', plan, from) };
   if (name === 'setup' && (plan || !id || id === 'plans')) return { name, plan, from };
   return { name: 'home', anchor: ['how-it-works', 'faq'].includes(name) ? name : undefined };
 }
@@ -304,11 +277,6 @@ function availablePlans() {
 function trimComparison(items) {
   const available = new Set(items.map(plan => plan.id));
   for (const id of state.compare) if (!available.has(id)) state.compare.delete(id);
-}
-
-function catalogStamp() {
-  const date = new Intl.DateTimeFormat(state.language, { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(catalogCheckedOn));
-  return `<p class="catalog-stamp note">${icon('calendar-days')}<span>${text('checkedOn')}: <time datetime="${catalogCheckedOn}">${date}</time>. ${text('publishedPrices')}</span></p>`;
 }
 
 function dataOptions() {
@@ -447,7 +415,6 @@ function hero() {
       <div class="hero-copy">
         <h1 tabindex="-1">${text('titleFirst')}<br><span>${text('titleSecond')}</span></h1>
         <p>${text('subtitle')}</p>
-        ${link('checkEsim', 'phone', 'hero-link', 'arrow-right')}
       </div>
       <span class="hero-location">${icon('map-pin')}${text('samarkand')}</span>
     </div>
@@ -460,7 +427,7 @@ const howSteps = [
   ['qr-code', 'connectTitle', 'connectBody']
 ];
 const faqItems = [
-  ['faqCalls', 'dataOnly'], ['faqActivation', 'faqActivationBody'],
+  ['faqPhone', 'faqPhoneBody'], ['faqCalls', 'dataOnly'], ['faqActivation', 'faqActivationBody'],
   ['faqPassport', 'faqPassportBody'], ['faqPayment', 'purchaseNotice']
 ];
 
@@ -498,12 +465,6 @@ function catalog() {
   return `<div class="container page catalog-page">
     <div class="page-top"><a class="text-action" href="#home">${icon('arrow-left')}${text('back')}</a></div>
     ${resultsSection(items, true)}
-    <aside class="panel purchase-guide" aria-label="${text('beforePurchase')}">
-      <span class="icon-tile">${icon('smartphone')}</span>
-      <div><h2>${text('beforePurchase')}</h2><p class="note">${text('dataOnly')}</p></div>
-      <div class="actions">${link('checkPhoneLink', 'phone/plans', 'text-action', 'arrow-right')}${link('install', 'setup/plans', 'text-action', 'arrow-right')}</div>
-    </aside>
-    <div class="catalog-source">${catalogStamp()}${external('tripMore', tripStore[state.language] ?? tripStore.en)}<p class="note">${text('tripNote')}</p></div>
     ${compareTray()}
   </div>`;
 }
@@ -582,7 +543,7 @@ function compare(pair) {
     <tbody>${metrics[0].map(([key, value, source], index) => `<tr><th scope="row">${text(key)}</th><td>${metricContent(value, source)}</td><td>${metricContent(...metrics[1][index].slice(1))}</td></tr>`).join('')}
     <tr><td></td>${pair.map(plan => `<td>${link('details', planPath(plan, 'compare'), 'text-action', 'arrow-right')}</td>`).join('')}</tr></tbody></table>
     <section class="shared-conditions"><h2>${text('commonConditions')}</h2>${metricList(commonConditions())}</section>
-    ${catalogStamp()}</div>`, 'narrow-page');
+  </div>`, 'narrow-page');
 }
 
 function details(plan, from) {
@@ -594,64 +555,23 @@ function details(plan, from) {
     <section class="panel plan-facts">
       <h2>${text('planDetails')}</h2>
       ${metricList([...facts, ...commonConditions()])}
-      ${catalogStamp()}
-      ${external('providerTerms', plan.purchase ? checkout : provider.terms)}
     </section>
     <aside class="panel purchase-panel" aria-label="${text('purchaseTitle')}">
       <div class="purchase-price"><span>${text('price')}</span><strong>${price(plan)} <small>USD</small></strong></div>
       <div class="desktop-buy">${external('buy', checkout, 'button button-primary')}</div>
       <p class="note">${text('purchaseNotice')}</p>
       <p class="note${plan.checkAvailability ? ' plan-availability' : ''}">${purchaseHint(plan)}</p>
-      <div class="purchase-actions">
-        ${link('navPurchase', relatedPath('purchase', plan, from), 'text-action', 'arrow-right')}
-        ${link('checkEsim', relatedPath('phone', plan, from), 'text-action', 'arrow-right')}
-        ${link('install', relatedPath('setup', plan, from), 'text-action', 'arrow-right')}
-      </div>
+      <p class="note">${text('phoneCheck')}</p>
+      ${link('navPurchase', relatedPath('purchase', plan, from), 'text-action', 'arrow-right')}
     </aside></div>
     <div class="mobile-purchase"><div class="mobile-price"><strong>${price(plan)}</strong><small> USD</small></div>${external('buy', checkout, 'button button-primary')}</div>`, 'offer-page');
 }
 
-function deviceSteps() {
-  const steps = state.device === 'iphone' ? ['openSettings', 'iphoneCellular', 'iphoneAdd'] : ['openSettings', 'androidSim', 'androidAdd'];
-  return steps.map(step => `<li>${text(step)}</li>`).join('');
-}
-
-function phone(plan, from, result) {
-  const route = relatedPath('phone', plan, from);
-  const back = plan ? planPath(plan, from) : from;
-  const next = plan ? back : 'plans';
-  const returnLabel = plan ? 'backToPlan' : 'backToPlans';
-  const selected = plan ? `<p class="selected-plan">${text('selectedPlan')}: <strong>${providers[plan.provider].name} · ${gigabytes(plan.data)}</strong></p>` : '';
-  if (result) {
-    const ok = result === 'supported';
-    return page(text(ok ? 'supported' : 'unsupported'), route, `<div class="panel phone-panel">
-      ${selected}
-      <div class="notice${ok ? ' notice-success' : ''}">${icon(ok ? 'circle-check' : 'circle-alert')}<p>${text(ok ? 'unlocked' : 'fallback')}</p></div>
-      <div class="actions">${link(returnLabel, next, 'button button-primary', 'arrow-right')}</div>
-    </div>`, 'narrow-page');
-  }
-  return page(text('checkPhone'), back, `<div class="panel phone-panel">
-    ${selected}
-    <fieldset class="device-switch">
-      <legend class="sr-only">${text('deviceType')}</legend>
-      ${[['iphone', 'iPhone'], ['android', 'Android']].map(([id, label]) => `<label>
-        <input type="radio" name="device" value="${id}"${state.device === id ? ' checked' : ''}><span>${icon('smartphone')}${label}</span>
-      </label>`).join('')}
-    </fieldset>
-    <ol class="steps" id="device-steps" aria-live="polite">${deviceSteps()}</ol>
-    <div class="notice">${icon('lock-keyhole-open')}<div><strong>${text('unlockedTitle')}</strong><p>${text('unlocked')}</p></div></div>
-    <div class="actions">
-      ${link('esimAvailable', `${route}/supported`, 'button button-primary', 'check')}
-      ${link('esimUnknown', `${route}/unsupported`)}
-    </div>
-  </div>`, 'narrow-page');
-}
-
 function setup(plan, from) {
   const back = plan ? planPath(plan, from) : from;
-  return page(text('install'), back, `<div class="panel phone-panel">
+  return page(text('install'), back, `<div class="panel setup-panel">
+    <p class="notice">${icon('smartphone')}${text('phoneCheck')}</p>
     <ol class="steps">${['installWifi', 'installData', 'installRoaming'].map(step => `<li>${text(step)}</li>`).join('')}</ol>
-    <div class="actions">${link('checkEsim', relatedPath('phone', plan, from), 'button button-secondary', 'arrow-right')}</div>
   </div>`, 'narrow-page');
 }
 
@@ -674,19 +594,20 @@ function renderChrome(active) {
 }
 
 function render(navigate = false, loadSharedFilters = false) {
-  const { name, plan, pair, from, result, anchor, query } = readRoute();
+  const { name, plan, pair, from, redirect, anchor, query } = readRoute();
+  if (redirect) history.replaceState(history.state, '', `#${redirect}`);
   if (loadSharedFilters && query) restoreSharedFilters(query);
   document.querySelector('.share-dialog[open]')?.close();
   const context = {
     language: state.language, plans: name === 'planner' ? plans.filter(item => !item.checkAvailability) : plans,
     providers, icon, plan, purchaseHref: storefront, purchaseHint,
     planHref: selected => `#${planPath(selected, name === 'planner' ? 'planner' : from)}`,
-    phoneHref: `#${relatedPath('phone', plan, from)}`,
+    phoneCheck: text('phoneCheck'),
     setupHref: `#${relatedPath('setup', plan, from)}`
   };
   const views = {
     home, plans: catalog, compare: () => compare(pair), plan: () => details(plan, from),
-    phone: () => phone(plan, from, result), setup: () => setup(plan, from),
+    setup: () => setup(plan, from),
     planner: TourSIMPlanner.render, coverage: TourSIMCoverage.render,
     purchase: TourSIMPurchase.renderPurchase, account: TourSIMPurchase.renderAccount
   };
@@ -746,11 +667,6 @@ app.addEventListener('change', event => {
     state.usage = control.value;
     const numberField = app.querySelector('#custom-days');
     updateDataGuide(numberField.willValidate && !numberField.validity.valid);
-    saveTrip();
-    return;
-  } else if (control.name === 'device') {
-    state.device = control.value;
-    app.querySelector('#device-steps').innerHTML = deviceSteps();
     saveTrip();
     return;
   } else if (control.name === 'compare' && getPlan(control.value)) {

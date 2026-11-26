@@ -1,12 +1,9 @@
 'use strict';
 
-const catalogCheckedOn = '2026-11-25';
-
 const providers = {
   airalo: {
     name: 'Airalo', initial: 'A', network: 'beelineNetwork',
     store: { en: 'https://www.airalo.com/uzbekistan-esim', ru: 'https://www.airalo.com/ru/uzbekistan-esim', uz: 'https://www.airalo.com/uz/uzbekistan-esim' },
-    terms: 'https://www.airalo.com/ru/uzbekistan-esim/uzbeknet-7days-1gb-x',
     conditions: {
       hotspot: ['airaloHotspot', 'https://www.airalo.com/help/using-managing-esims/ZSEEHBT5HW6F/can-i-use-tethering-personal-hotspot/5XTAX1X7HR0B'],
       topUp: ['airaloTopUp', 'https://www.airalo.com/help/using-managing-esims/ZSEEHBT5HW6F/si-mund-ta-rimbush-nje-karte-esim/2DMCF3341SYF']
@@ -15,7 +12,6 @@ const providers = {
   enjoy: {
     name: 'Enjoy eSIM', initial: 'E', network: 'enjoyNetwork',
     store: { en: 'https://enjoyesim.com/en/uzbekistan-esim' },
-    terms: 'https://enjoyesim.com/en/uzbekistan-esim',
     conditions: {
       hotspot: ['enjoyHotspot', 'https://enjoyesim.com/en/uzbekistan-esim'],
       topUp: ['enjoyTopUp', 'https://enjoyesim.com/en/uzbekistan-esim']
@@ -39,7 +35,6 @@ const plans = [
   { id: 'enjoy-10', provider: 'enjoy', data: 10, days: 30, price: 25 }
 ];
 
-const tripStore = {
-  en: 'https://www.trip.com/things-to-do/experiences/uzbekistan-connectivity-solutions/',
-  ru: 'https://ru.trip.com/things-to-do/experiences/uzbekistan-connectivity-solutions/'
-};
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { plans, providers };
+}

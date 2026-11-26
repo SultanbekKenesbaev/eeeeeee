@@ -148,9 +148,7 @@ main:focus { outline: 0; }
 .hero h1 { font-size: clamp(2.7rem, 5.55vw, 4.85rem); line-height: 1.04; font-weight: 800; letter-spacing: -.065em; }
 .hero h1 span { color: var(--hero-accent); }
 .hero-copy > p { max-width: 31rem; margin-top: 20px; color: var(--hero-description); font-size: clamp(1rem, 1.8vw, 1.18rem); line-height: 1.65; }
-.hero-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 12px; color: var(--hero-text); font-weight: 750; font-size: .93rem; text-decoration: none; }
-.hero-link:hover { text-decoration: underline; text-underline-offset: 4px; }
-.hero a:focus-visible, .hero h1:focus-visible { outline-color: var(--hero-text); }
+.hero h1:focus-visible { outline-color: var(--hero-text); }
 .hero-location { position: absolute; right: 0; bottom: 66px; display: flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 8px; background: #101D39DA; color: var(--hero-text); font-size: .8rem; font-weight: 700; }
 
 .home-content { position: relative; padding-bottom: 68px; }
@@ -234,27 +232,22 @@ select.input { padding-right: 32px; background: var(--background) var(--chevron)
 .data-guide-result { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
 .data-guide-result button { min-height: 44px; font-size: .88rem; }
 #data-estimate { font-weight: 800; }
-.purchase-guide { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 15px; }
-.purchase-guide h2, .plan-facts h2, .shared-conditions h2 { font-size: 1.13rem; line-height: 1.25; font-weight: 800; }
-.purchase-guide .actions { margin-left: auto; }
-.catalog-source { display: grid; justify-items: start; }
-.catalog-stamp { display: flex; align-items: flex-start; gap: 7px; }
-.catalog-stamp .icon { margin-top: 3px; color: var(--primary); }
+.plan-facts h2, .shared-conditions h2 { font-size: 1.13rem; line-height: 1.25; font-weight: 800; }
 .compare-tray, .mobile-purchase { position: fixed; z-index: 9; left: 50%; bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; width: min(100% - 24px, 540px); padding: 9px 13px; border: 1px solid var(--line); border-radius: 15px; background: var(--white); box-shadow: var(--shadow-strong); transform: translateX(-50%); font-weight: 800; }
 .compare-tray .button { flex: none; }
 :root:has(.compare-tray:not([hidden])) { scroll-padding-bottom: 88px; }
 body:has(.compare-tray:not([hidden])) .site-footer { padding-bottom: 100px; }
 
 .detail-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); grid-template-areas: "facts purchase"; align-items: start; gap: 16px; }
-.plan-facts, .purchase-panel, .phone-panel, .comparison-panel { display: grid; gap: 16px; padding: clamp(15px, 3.2vw, 24px); }
+.plan-facts, .purchase-panel, .setup-panel, .comparison-panel { display: grid; gap: 16px; padding: clamp(15px, 3.2vw, 24px); }
 .plan-facts { grid-area: facts; justify-items: start; }
 .purchase-panel { grid-area: purchase; }
+.purchase-panel > .text-action { justify-self: start; }
 .purchase-price { display: grid; gap: 5px; }
 .purchase-price span { color: var(--muted); font-size: .9rem; font-weight: 750; }
 .purchase-price strong { color: var(--primary); font-size: clamp(2.1rem, 7vw, 4rem); font-weight: 800; line-height: 1; letter-spacing: -.065em; }
 .purchase-price small { font-size: .43em; letter-spacing: 0; }
 .desktop-buy .button { width: 100%; }
-.purchase-actions { display: grid; justify-items: start; gap: 0; padding-top: 5px; border-top: 1px solid var(--line); }
 .mobile-purchase { display: none; }
 .mobile-price { flex: none; line-height: 1.1; white-space: nowrap; }
 .mobile-price strong { font-size: 1.45rem; }
@@ -282,7 +275,6 @@ body:has(.compare-tray:not([hidden])) .site-footer { padding-bottom: 100px; }
 .share-url .input { font-weight: 600; }
 .share-actions { justify-content: flex-end; }
 
-.selected-plan { width: fit-content; padding: 5px 11px; background: var(--blue-soft); border-radius: 8px; color: var(--dark); font-size: .91rem; }
 .device-switch { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; max-width: 380px; min-inline-size: 0; margin: 0; padding: 4px; border: 1px solid var(--line); border-radius: 13px; background: var(--background); }
 .device-switch label { position: relative; cursor: pointer; }
 .device-switch input { position: absolute; opacity: 0; pointer-events: none; }
@@ -294,8 +286,6 @@ body:has(.compare-tray:not([hidden])) .site-footer { padding-bottom: 100px; }
 .steps li::before { content: counter(step); display: grid; flex: 0 0 29px; place-items: center; height: 29px; border-radius: 8px; background: var(--blue-soft); color: var(--primary); font-weight: 800; }
 .notice { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--blue-soft); color: var(--dark); }
 .notice .icon { margin-top: 3px; color: var(--primary); }
-.notice-success { background: var(--success-soft); }
-.notice-success .icon { color: var(--success); }
 
 .site-footer { background: var(--white); border-top: 1px solid var(--line); }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 19px; }
@@ -321,7 +311,6 @@ body:has(.compare-tray:not([hidden])) .site-footer { padding-bottom: 100px; }
   .hero::after { background: var(--hero-gradient-mobile); }
   .hero-location { bottom: 47px; }
   .hero-copy > p { margin-top: 15px; }
-  .hero-link { margin-top: 5px; }
   .finder, .finder:has(.custom-row:not([hidden])) { grid-template-columns: 1fr; gap: 9px; margin-top: -34px; padding: 12px; }
   .finder .trip-field { grid-template-columns: minmax(0, 1fr) minmax(110px, 1fr); align-items: center; gap: 8px; }
   .finder select, .finder input { text-align: right; }
@@ -341,7 +330,6 @@ body:has(.compare-tray:not([hidden])) .site-footer { padding-bottom: 100px; }
   .mobile-purchase .button { flex: 1; }
   body:has(.mobile-purchase) .site-footer { padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
   :root:has(.mobile-purchase) { scroll-padding-bottom: calc(88px + env(safe-area-inset-bottom)); }
-  .purchase-guide .actions { margin-left: 0; }
 }
 @media (max-width: 420px) {
   .container, .header-inner { width: calc(100% - 24px); }

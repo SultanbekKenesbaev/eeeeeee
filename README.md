@@ -2,20 +2,27 @@
 
 Mobile-first catalog for comparing prepaid travel eSIM data packages for Uzbekistan. The travel eSIM provides data through roaming, not a local Uzbek phone number.
 
-Open `index.html` in a browser, or run `python3 -m http.server 4273 --bind 127.0.0.1` from this directory and open `http://127.0.0.1:4273`. No dependencies or build step are required.
+Run `node server.mjs` with Node.js 24 or later and open `http://127.0.0.1:4273`. There are no npm dependencies or build steps. The Node server serves both the site and the account API.
 
 - Filter Airalo and Enjoy eSIM data packages by trip length and gigabytes in EN, RU, or UZ.
 - Estimate data for a trip and apply the estimate to the filters. Share comparisons with a link that retains the current filters.
 - Use the plan finder to estimate data from Instagram, YouTube, Telegram, and maps and choose a verified package within your budget.
 - Select cities on the coverage map to see documented 4G and links to the operator maps. The boundary uses [Natural Earth](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/).
 - Compare price, validity, network, hotspot and top-up terms, with links to provider sources. The catalog only includes data plans for which the provider discloses no identity verification.
-- Check your phone and follow the setup guide. Purchase and eSIM issuance happen on the provider's site. Trip.com is an external marketplace, not an integrated checkout.
-- Follow the purchase guide and add purchased plans to My eSIMs for manual tracking in this browser. Open the provider’s account to check the live balance.
+- Choose a package, check out with its provider, and use the QR or installation option the provider issues. Check your phone and follow the setup guide.
+- Create an account with your email and a password of at least 15 characters. Sign in to track purchased eSIMs manually on any device. Check live balances, confirmed dates, and an available top-up in the provider's account.
+- Import purchases saved before accounts were available from My eSIMs. Open TourSIM at the same address in the browser where you saved them.
 - Switch between light and dark themes. The initial theme follows the system setting.
 
-The catalog uses a reviewed snapshot, not a live feed or a quote. Update plan values, links, and the review date in `catalog.js` after checking the providers' terms. Displayed amounts are published USD prices; checkout may use another currency or price.
+The catalog displays a snapshot of published USD prices. Update plan values and checkout links in `catalog.js` after checking the providers' terms. Checkout may use another currency or price.
 
-TourSIM does not collect documents or payments, issue an eSIM, or reserve a SIM. It has no provider API or affiliate integration.
+Providers handle payments, QR issuance, live balances and top-up.
+
+## Server configuration
+
+The default SQLite file is `.data/toursim.sqlite`. Set `TOURSIM_DB` to an absolute path on persistent storage when hosting the app. `HOST` and `PORT` default to `127.0.0.1` and `4273`.
+
+For public hosting, run the Node server behind an HTTPS reverse proxy and set `PUBLIC_ORIGIN` to the public origin, for example `https://toursim.example.com`. This enables secure session cookies. Account creation accepts an email address and signs the user in immediately, with no email delivery service configured.
 
 ## Design assets
 

@@ -1,5 +1,30 @@
 .esim-flow { gap: clamp(18px, 3vw, 28px); }
 .esim-flow-lede { color: var(--muted); max-width: 56ch; }
+.esim-account-body { display: grid; gap: clamp(16px, 2.5vw, 24px); }
+.esim-account-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 16px; }
+.esim-account-toolbar > p { min-width: 0; overflow-wrap: anywhere; font-weight: 750; }
+.esim-auth { width: min(100%, 470px); }
+.esim-auth-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--background);
+}
+.esim-auth-switch button {
+  min-height: 44px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-size: .88rem;
+  font-weight: 800;
+}
+.esim-auth-switch button:hover { color: var(--primary); }
+.esim-auth-switch button[aria-pressed="true"] { color: var(--primary); background: var(--white); box-shadow: var(--shadow); }
+.esim-auth .esim-flow-form { gap: 13px; }
 .esim-flow-grid, .esim-account-grid {
   display: grid;
   gap: clamp(14px, 2vw, 22px);
@@ -91,7 +116,6 @@
 .esim-record-term { color: var(--muted); font-size: .87rem; }
 .esim-record-metrics { grid-template-columns: repeat(auto-fit, minmax(min(130px, 100%), 1fr)); }
 .esim-record-metrics small { display: block; color: var(--muted); font-size: .77rem; }
-.esim-record-links { gap: 0 15px; }
 .esim-record-edit { border-top: 1px solid var(--line); }
 .esim-record-edit summary {
   min-height: 44px;
