@@ -9,7 +9,7 @@ Run `node server.mjs` with Node.js 24 or later and open `http://127.0.0.1:4273`.
 - Use the plan finder to estimate data from Instagram, YouTube, Telegram, and maps and choose a verified package within your budget.
 - Select cities on the coverage map to see documented 4G and links to the operator maps. The boundary uses [Natural Earth](https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/).
 - Compare price, validity, network, hotspot and top-up terms, with links to provider sources. The catalog only includes data plans for which the provider discloses no identity verification.
-- Choose a package, check out with its provider, and use the QR or installation option the provider issues. Check your phone and follow the setup guide.
+- Choose a package and try the browser-only demo checkout with the provided test card. The installation guide covers iPhone, Galaxy and Pixel. A real eSIM requires a QR code or installation option from the provider.
 - Create an account with your email and a password of at least 15 characters. Sign in to track purchased eSIMs manually on any device. Check live balances, confirmed dates, and an available top-up in the provider's account.
 - Import purchases saved before accounts were available from My eSIMs. Open TourSIM at the same address in the browser where you saved them.
 - Switch between light and dark themes. The initial theme follows the system setting.
@@ -32,4 +32,4 @@ The four `assets/service-*.svg` illustrations are vector artwork for the home an
 
 ## Browser regression check
 
-With Playwright and its Chromium browser available, run `node tests/journey.mjs`. The check starts a loopback server with a temporary SQLite database and exercises filtering, comparison, compatibility and account flows. Set `TOURSIM_PLAYWRIGHT` or `TOURSIM_CHROMIUM` to use an existing installation, or `TOURSIM_TEST_TMPDIR` to use an existing directory for the temporary database.
+With Playwright and its Chromium browser available, run `node tests/journey.mjs`. The check starts a loopback server with a temporary SQLite database and exercises filtering, comparison, demo checkout, compatibility and account flows. Set `TOURSIM_PLAYWRIGHT` or `TOURSIM_CHROMIUM` to use an existing installation, or `TOURSIM_TEST_TMPDIR` to use an existing directory for the temporary database.

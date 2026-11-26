@@ -97,7 +97,23 @@ try {
 
   await page.locator('.comparison-plan').first().click();
   await page.locator('.purchase-panel').waitFor();
-  assert.equal(new URL(await page.locator('.desktop-buy a').getAttribute('href')).hostname, 'www.airalo.com');
+  assert.equal(await page.locator('.desktop-buy a').getAttribute('href'), '#checkout/airalo-5/compare');
+  await page.locator('.desktop-buy a').click();
+  await page.waitForURL('**/#checkout/airalo-5/compare');
+  const demoForm = page.locator('[data-demo-form]');
+  assert.equal(await demoForm.locator('input[name]').count(), 0);
+  await demoForm.locator('[data-demo-fill]').click();
+  await demoForm.locator('#demo-card-cvv').fill('000');
+  await demoForm.locator('button[type="submit"]').click();
+  await demoForm.locator('#demo-card-cvv[aria-invalid="true"]').waitFor();
+  await demoForm.locator('[data-demo-fill]').click();
+  await demoForm.locator('button[type="submit"]').click();
+  await page.locator('[data-demo-stage="processing"]').waitFor();
+  await page.locator('[data-demo-stage="success"] [data-demo-setup]').click();
+  await page.waitForURL('**/#setup/airalo-5/compare');
+  await page.locator('#install-steps a[href*="support.apple.com"]').waitFor();
+  await page.locator('.page-top a').click();
+  await page.waitForURL('**/#plan/airalo-5/compare');
   await page.locator('.purchase-panel a[href^="#phone/"]').click();
   await page.locator('input[value="android"] + span').click();
   await page.locator('#phone-steps a[href*="samsung.com"]').waitFor();

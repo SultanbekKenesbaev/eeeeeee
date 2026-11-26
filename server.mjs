@@ -98,7 +98,8 @@ const recordIdPattern = /^[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}$/;
 
 const publicFiles = new Set([
   'index.html', 'app.js', 'catalog.js', 'icons.js', 'planner.js', 'coverage.js', 'purchase.js', 'theme.js',
-  'data-estimate.js', 'data-guide.js', 'data-guide.css', 'styles.css', 'planner.css', 'coverage.css', 'purchase.css', 'journey.css',
+  'data-estimate.js', 'data-guide.js', 'data-guide.css', 'demo-checkout.js', 'demo-checkout.css',
+  'styles.css', 'planner.css', 'coverage.css', 'purchase.css', 'journey.css',
   'assets/favicon.svg', 'assets/toursim-mark.svg', 'assets/samarkand-hero.webp', 'assets/uzbekistan-outline.js',
   'assets/manrope-latin.woff2', 'assets/manrope-cyrillic.woff2', 'assets/manrope-OFL.txt',
   'assets/feather-license.txt', 'assets/lucide-license.txt',

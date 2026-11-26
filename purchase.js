@@ -25,8 +25,8 @@ const TourSIMPurchase = (() => {
     en: {
       purchase: 'Buy and activate eSIM', account: 'My eSIMs', catalog: 'View all plans', planDetails: 'Back to plan',
       select: 'Choose a plan', choose: 'Select plan', selectHint: 'Choose the package you want to use in Uzbekistan.',
-      payment: 'Pay the provider', paymentHint: 'Match the data allowance and validity to your choice. Check the final price and currency before paying.',
-      checkout: 'Continue to {provider}', qr: 'Get your QR code',
+      payment: 'Try card payment', paymentHint: 'Use the test card to try checkout. A real eSIM is purchased from the provider.',
+      checkout: 'Buy', qr: 'Get your QR code',
       qrDefault: 'Open the installation instructions supplied by the provider after payment.',
       qrAiralo: 'Open your purchased eSIM in Airalo and look for the installation or sharing options.',
       qrEnjoy: 'Open the QR code sent by Enjoy eSIM to the email address used at checkout.',
@@ -60,9 +60,9 @@ const TourSIMPurchase = (() => {
     ru: {
       purchase: 'Покупка и активация eSIM', account: 'Личный кабинет', catalog: 'Все тарифы', planDetails: 'К тарифу',
       select: 'Выберите тариф', choose: 'Выбрать тариф', selectHint: 'Выберите пакет для поездки по Узбекистану.',
-      payment: 'Оплатите у поставщика', paymentHint: 'Сверьте объём и срок выбранного пакета. Перед оплатой проверьте итоговую сумму и валюту.',
-      checkout: 'Перейти в {provider}', qr: 'Получите QR-код',
-      qrDefault: 'После оплаты откройте инструкцию по установке от поставщика.',
+      payment: 'Попробуйте оплату картой', paymentHint: 'Пройдите демо с тестовой картой. Настоящую eSIM можно купить у провайдера.',
+      checkout: 'Купить', qr: 'Получите QR-код',
+      qrDefault: 'После покупки у провайдера откройте его инструкцию по установке.',
       qrAiralo: 'Откройте купленную eSIM в Airalo и перейдите к настройкам установки или отправки.',
       qrEnjoy: 'Откройте QR-код из письма Enjoy eSIM, отправленного на адрес из заказа.',
       qrHelp: 'Инструкция поставщика', activate: 'Установите и активируйте eSIM',
@@ -95,8 +95,8 @@ const TourSIMPurchase = (() => {
     uz: {
       purchase: 'eSIM xaridi va faollashtirish', account: 'Shaxsiy kabinet', catalog: 'Barcha tariflar', planDetails: 'Tarifga qaytish',
       select: 'Tarifni tanlang', choose: 'Tarifni tanlash', selectHint: 'Oʻzbekistonga safaringiz uchun paketni tanlang.',
-      payment: 'Provayderda toʻlang', paymentHint: 'Paket hajmi va muddatini tekshiring. Toʻlovdan oldin yakuniy narx va valyutani koʻring.',
-      checkout: '{provider} saytiga oʻtish', qr: 'QR-kodni oling',
+      payment: 'Karta bilan toʻlovni sinab koʻring', paymentHint: 'Demo uchun sinov kartasidan foydalaning. Haqiqiy eSIM provayder orqali xarid qilinadi.',
+      checkout: 'Sotib olish', qr: 'QR-kodni oling',
       qrDefault: 'Toʻlovdan soʻng provayder bergan oʻrnatish yoʻriqnomasini oching.',
       qrAiralo: 'Xarid qilingan eSIMʼni Airaloʼda oching va oʻrnatish yoki ulashish boʻlimiga oʻting.',
       qrEnjoy: 'Buyurtmadagi elektron pochtaga Enjoy eSIM yuborgan QR-kodni oching.',
@@ -169,7 +169,7 @@ const TourSIMPurchase = (() => {
     const back = plan ? context.planHref?.(plan) ?? `#plan/${plan.id}` : '#plans';
     const qrHint = { airalo: t.qrAiralo, enjoy: t.qrEnjoy }[plan?.provider] ?? t.qrDefault;
     const suffix = plan ? `/${plan.id}` : '';
-    const providerPayment = provider ? external(context, context.purchaseHref(plan), t.checkout.replace('{provider}', provider.name), 'button button-primary') : '';
+    const demoPayment = plan ? internal(context, context.checkoutHref, t.checkout, 'button button-primary') : '';
     const qrHelp = help?.iosHelp ? `<div class="actions">${external(context, help.iosHelp, 'iPhone')}${external(context, help.androidHelp, 'Android')}</div>` :
       help?.qrHelp ? external(context, help.qrHelp, t.qrHelp) : '';
 
@@ -197,7 +197,7 @@ const TourSIMPurchase = (() => {
         </div>
         <ol class="panel esim-flow-panel esim-purchase-steps">
           <li><span class="icon-tile" aria-hidden="true">${icon(plan ? 'check' : 'sliders-horizontal')}</span><div><h2>${plan ? t.chosen : t.select}</h2>${plan ? '' : `<p>${t.selectHint}</p>`}</div></li>
-          <li><span class="icon-tile" aria-hidden="true">${icon('shield-check')}</span><div><h2>${t.payment}</h2><p>${t.paymentHint}</p>${providerPayment}</div></li>
+          <li><span class="icon-tile" aria-hidden="true">${icon('shield-check')}</span><div><h2>${t.payment}</h2><p>${t.paymentHint}</p>${demoPayment}</div></li>
           <li><span class="icon-tile" aria-hidden="true">${icon('qr-code')}</span><div><h2>${t.qr}</h2><p>${qrHint}</p>${qrHelp}</div></li>
           <li><span class="icon-tile" aria-hidden="true">${icon('smartphone')}</span><div><h2>${t.activate}</h2><p>${t.activateHint}</p>${internal(context, context.setupHref ?? `#setup${suffix}`, t.setup)}</div></li>
         </ol>
